@@ -19,9 +19,6 @@ const styles = theme => ({
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
     },
-    container: {
-        marginTop: '5%'
-    },
     subButton: {
         color: 'white',
         background: 'green',
@@ -78,6 +75,32 @@ class FormI3_part1 extends Component {
                                             </Grid>
                                         </Typography>
                                     </Grid>
+                                    
+                                    <Grid item>
+                                        <br/>
+                                    </Grid>
+                                    <Grid container spacing={40} item direction="column">
+                                        <Grid item justify="center">
+                                            <Typography gutterBottom variant="subheading">Internship Information</Typography>
+                                        </Grid>
+                                        <Grid item container direction="row" justify="space-around">
+                                            <Grid item>
+                                                <TextField required label="Internship Title" />
+                                            </Grid>
+                                            <Grid item>
+                                                <TextField required label="Specialization" />
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item container direction="row" justify="space-around">
+                                            <Grid item>
+                                                <TextField required type="date" helperText="Internship Period From"/>
+                                            </Grid>
+                                            <Grid item>
+                                                <TextField required type="date" helperText="Period To" />
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
                                     <Grid item>
                                         <Typography gutterBottom>
                                             <Button varient="contained" type="submit" className={classes.subButton}>SUBMIT</Button>
