@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import TextField from './UserTextField';
+import UserTextField from './UserTextField';
 import SelectPerformance from './SelectPerfomance'; 
 import RadioCustom from './RadioCustom';
 
@@ -41,14 +41,19 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(name, performance, comments) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, name, performance, comments };
 }
 
-function HandleRadio(e, data) {
-    console.log(data);
+function HandleRadio(e) {
+    console.log(event.target.value);
     e.preventDefault();
+}
+
+function HandleTextfield(e) {
+  e.
+  e.preventDefault();
 }
 
 const rows = [
@@ -64,6 +69,7 @@ const rows = [
     createData('Ability to learn'),
   ];
 
+const data = [];
 
 function CustomizedTable(props) {
   const { classes } = props;
@@ -80,15 +86,23 @@ function CustomizedTable(props) {
         </TableHead>
         <TableBody>
         {rows.map(row => {
+
+            let name;
+            let performance;
+            let comment; 
+
             return (
               <TableRow className={classes.row} key={row.id}>
                 <CustomTableCell component="th" scope="row">
                   {row.name}
                 </CustomTableCell>
                 <CustomTableCell ><RadioCustom onChange={HandleRadio.bind(this)}/></CustomTableCell>
-                <CustomTableCell ><TextField /></CustomTableCell>
+                <CustomTableCell ><UserTextField onChange={HandleTextfield.bind(this)} value={comment}/></CustomTableCell>
               </TableRow>
             );
+ 
+            data.push(createData(name, performance, comment));
+
           })}
         </TableBody>
       </Table>

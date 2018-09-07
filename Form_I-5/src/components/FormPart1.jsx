@@ -19,32 +19,18 @@ const styles = theme => ({
   },
 });
 
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
-
 class TextFields extends React.Component {
-  state = {
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
-  };
+
+  constructor(props){
+    super(props);
+    this.getDetails = this.getDetails.bind(this);
+  }
+
+  getDetails(){
+    return (
+      this.state.values
+    );
+  }
 
   handleChange = name => event => {
     this.setState({

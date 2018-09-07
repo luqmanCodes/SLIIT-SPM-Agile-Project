@@ -19,25 +19,6 @@ const styles = theme => ({
   },
 });
 
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
-
 class TextFields extends React.Component {
   state = {
 
@@ -58,8 +39,8 @@ class TextFields extends React.Component {
           id="comments"
           label=""
           className={classes.textField}
-          value=""
           onChange={this.handleChange('name')}
+          value={this.props.value}
           margin="normal"
         />
       </form>

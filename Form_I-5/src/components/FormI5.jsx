@@ -8,10 +8,54 @@ import PerformanceOverall from './PerfomanceOverall';
 
 export default class FormI5 extends Component {
   
-  constructor(){
-      super();
-  }
-  
+  constructor(props){
+      super(props);
+
+      this.state={
+        studentId: null,
+        studentName:  null,
+        employeeName: null,
+        supervisorName: null,
+
+        performance: {
+          performanceId: null,
+          performanceLevel: null,
+          comments: null
+        },
+
+        workHabit: {
+          habitId: null,
+          performanceLevel: null,
+          comments: null,
+        },
+
+        listPositiveCharacteristics: null,
+        listPersonalCharacteristics: null,
+        effectiveOfInternship: null,
+        suggestion: null,
+        acadamicTrainingPosition: null,
+        OtherComments: null,
+
+        overAllPerformance : null,
+        externalSupersorName: null,
+        date: null,
+      }
+    }
+
+    HandleDetails(e) {
+      // this.setState({this.state.studentId: studentId,
+      //                studentName: studentName,
+      //                employeeName: employeeName,
+      //                supervisorName: supervisorName,
+      // });
+      console.log('clicked');
+      e.preventDefault();
+    }
+
+    showState(){
+      console.log(this.state);
+    }
+    
     render() {
     return (
       <div>
