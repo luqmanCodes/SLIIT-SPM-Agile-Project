@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { green, red, lightBlue, lightGreen, blue } from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 const styles = {
   root_1: {
@@ -60,7 +58,6 @@ class RadioButtons extends React.Component {
         <Radio
           checked={this.state.selectedValue === 'a'}
           onChange={this.handleChange}
-          label="exsds"
           value="a"
           name="Outstanging"
           aria-label="A"
@@ -68,7 +65,6 @@ class RadioButtons extends React.Component {
             root: classes.root_1,
             checked: classes.checked,
           }}
-          label="Outstanging"
         />
         <label>
         Outstanging
