@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { blue, red, green } from '@material-ui/core/colors';
 import Radio from '@material-ui/core/Radio';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-
 
 const styles = {
   root_1: {

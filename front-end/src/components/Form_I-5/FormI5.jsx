@@ -1,11 +1,4 @@
-import React, { Component } from 'react';
-import FormPart1 from './FormPart1';
-import FormPart2 from './FromPart2';
-import PerformanceTable from './PerfomanceTable';
-import WorkHabitTable from './WorkHabitTable';
-import TextAreaCustom from './TextAreaCustom';
-import PerformanceOverall from './PerfomanceOverall';
-
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
