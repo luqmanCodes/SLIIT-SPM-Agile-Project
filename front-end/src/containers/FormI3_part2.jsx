@@ -69,7 +69,7 @@ class FormI3_part2 extends Component {
                         <form>
                             <Grid container item justify="center" alignItems="center" direction="column" direction="column" spacing={40}>
                                 <Grid item>
-                                    <Typography gutterBottom="true" variant="display3">FORM I-3 PART 2</Typography>
+                                    <Typography gutterBottom variant="display3">FORM I-3 PART 2</Typography>
                                 </Grid>
                                 <Grid item>
                                     <Typography gutterBottom variant="headline">Intern's Daily Diary</Typography>

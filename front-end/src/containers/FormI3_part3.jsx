@@ -56,9 +56,6 @@ const styles = theme => ({
  * It will be required only to be filled once
  */
 class FormI3_part2 extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const { classes } = this.props;
@@ -67,12 +64,12 @@ class FormI3_part2 extends Component {
                 <Grid className={classes.root} container justify="center" alignItems="center">
                     <Paper className={classes.root} elevation={2}>
                         <form>
-                            <Grid container item justify="center" alignItems="center" direction="column" direction="column" spacing={40}>
+                            <Grid container item justify="center" alignItems="center" direction="column" spacing={40}>
                                 <Grid item>
-                                    <Typography gutterBottom="true" variant="display3">FORM I-3 PART 3</Typography>
+                                    <Typography variant="display3">FORM I-3 PART 3</Typography>
                                 </Grid>
                                 <Grid item>
-                                    <Typography gutterBottom variant="headline">Intern's Daily Diary</Typography>
+                                    <Typography variant="headline">Intern's Daily Diary</Typography>
                                 </Grid>
 
                                 
@@ -88,7 +85,7 @@ class FormI3_part2 extends Component {
                                         <TableBody>
                                             <TableRow className={classes.row}>
                                                 <CustomTableCell>
-                                                    <TextField fullWidth={1000} label="Remarks" multiline required />
+                                                    <TextField fullWidth label="Remarks" multiline required />
                                                 </CustomTableCell>
                                             </TableRow>
                                         </TableBody>
@@ -101,7 +98,7 @@ class FormI3_part2 extends Component {
                                 </Grid>
 
                                 <Grid item>
-                                    <Typography gutterBottom>
+                                    <Typography>
                                         <Button varient="contained" type="submit" className={classes.subButton}>SUBMIT</Button>
                                     </Typography>
                                 </Grid>

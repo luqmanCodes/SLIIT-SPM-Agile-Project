@@ -45,7 +45,7 @@ class FormI3_part1 extends Component {
                         <form>
                             <Grid container item justify="center" alignItems="center" direction="column">
                                 <Grid item>
-                                    <Typography gutterBottom="true" variant="display3">FORM I-3 PART 1</Typography>
+                                    <Typography gutterBottom variant="display3">FORM I-3 PART 1</Typography>
                                 </Grid>
                                 <Grid item>
                                     <Typography gutterBottom variant="headline">Intern's Daily Diary</Typography>
@@ -53,7 +53,7 @@ class FormI3_part1 extends Component {
                                 <Grid item>
                                     <Typography gutterBottom variant="subheading">Intern's Information</Typography>
                                 </Grid>
-                                <Grid  direction="column" spacing={40} justify="center">
+                                <Grid container item direction="column" spacing={40} justify="center">
                                     <Grid container item >
                                         <Typography gutterBottom>
                                             <Grid item container direction="row" justify="space-around">
@@ -65,9 +65,9 @@ class FormI3_part1 extends Component {
                                                 </Grid>
                                             </Grid>
                                             <Grid item>
-                                                <TextField required multiline fullWidth={440} label="Intern's Private Address" />
+                                                <TextField required multiline fullWidth label="Intern's Private Address" />
                                             </Grid>
-                                            <Grid  item justify="center">
+                                            <Grid  item>
                                                 <TextField required label="Contact Number" />
                                             </Grid>
                                             <Grid item >
@@ -80,7 +80,7 @@ class FormI3_part1 extends Component {
                                         <br/>
                                     </Grid>
                                     <Grid container spacing={40} item direction="column">
-                                        <Grid item justify="center">
+                                        <Grid item>
                                             <Typography gutterBottom variant="subheading">Internship Information</Typography>
                                         </Grid>
                                         <Grid item container direction="row" justify="space-around">
