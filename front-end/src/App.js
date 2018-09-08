@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FormI1Student app={this.app} />
+
       </div>
     );
   }
