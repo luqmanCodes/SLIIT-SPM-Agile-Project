@@ -6,9 +6,10 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+
 const styles = theme => ({
     root: {
-        flexGrow: 1
+        height: '675px',
     },
     container: {
         display: 'flex',
@@ -17,6 +18,9 @@ const styles = theme => ({
     subButton: {
         color: 'white',
         background: 'green'
+    },
+    fullTextField : {
+        width: 440
     }
 });
 class FormI1Student extends Component {
@@ -45,33 +49,33 @@ class FormI1Student extends Component {
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.root}>
-                <Paper className={classes.root}>
-                    <form className={classes.container}>
+            <div  >
+                <Grid container alignItems="center" justify="center">
+                <Paper className={classes.root} >
+                    <form>
                         <Grid direction='column' container alignItems="center" justify="center" spacing={16}>
                             <Grid item md>
                                 <Typography variant='headline'>Form I-1</Typography>
                                 <Typography variant='subheading'>Internship Acceptance Form</Typography>
                             </Grid>
-                            <Grid direction='row' container item md spacing={40}>
-                                <Grid item md={3}>
+                            <Grid direction='row' alignItems="center" justify="center" container item md spacing={40}>
+                                <Grid item>
                                     <TextField value={this.state.stdId} id='stdId' onChange={this.handleOnChange} label='Student ID' required />
                                 </Grid>
-                                <Grid item md={3}>
+                                <Grid item>
                                     <TextField value={this.state.name} id='name' onChange={this.handleOnChange} label='Student Name' required />
                                 </Grid>
                             </Grid>
                             <Grid item md>
-                                <TextField value={this.state.name} id='name' onChange={this.handleOnChange} label='Student Name' required />
+                                <TextField className={classes.fullTextField} value={this.state.address} id='address' fullWidth onChange={this.handleOnChange} label='Address' required />
                             </Grid>
-                            <Grid item md>
-                                <TextField value={this.state.address} id='address' onChange={this.handleOnChange} label='Address' required />
-                            </Grid>
-                            <Grid item md>
+                            <Grid direction='row' alignItems="center" justify="center" container item md spacing={40}>
+                            <Grid item >
                                 <TextField value={this.state.homePhone} id='homePhone' onChange={this.handleOnChange} label='Home Phone' type='tel' required />
                             </Grid>
-                            <Grid item md>
+                            <Grid item >
                                 <TextField value={this.state.mobilePhone} id='mobilePhone' onChange={this.handleOnChange} label='Mobile Phone' type='tel' required />
+                            </Grid>
                             </Grid>
                             <Grid item md>
                                 <TextField
@@ -82,9 +86,10 @@ class FormI1Student extends Component {
                                     helperText='Use Comma(,) to seperate multiple e-mail addresses'
                                     required
                                     multiline
+                                    className = {classes.fullTextField}
                                 />
                             </Grid>
-                            <Grid container item direction='row' spacing={16} md={8}>
+                            <Grid container item direction='row' spacing={8} md>
                                 <Grid item md>
                                     <TextField value={this.state.semester} id='semester' onChange={this.handleOnChange} label='Semester' type='number' min="1" max="2" required />
                                 </Grid>
@@ -93,15 +98,16 @@ class FormI1Student extends Component {
                                 </Grid>
                                 <Grid item md>
                                     <TextField value={this.state.cgpa} id='cgpa' onChange={this.handleOnChange} label='CGPA' type='number' required />
-                                </Grid>
+                                </Grid> 
                             </Grid>
+                            <br/>
                             <Grid item md>
                                 <Button variant='contained' className={classes.subButton} type='submit'>Submit</Button>
                             </Grid>
-
                         </Grid>
                     </form>
                 </Paper>
+                </Grid>
             </div>
         );
     }
