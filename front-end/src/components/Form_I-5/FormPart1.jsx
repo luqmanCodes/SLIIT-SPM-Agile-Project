@@ -21,7 +21,6 @@ class TextFields extends React.Component {
 
   constructor(props){
     super(props);
-    this.getDetails = this.getDetails.bind(this);
   }
 
   // handleChange = name => event => {
