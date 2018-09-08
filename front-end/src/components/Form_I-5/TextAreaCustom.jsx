@@ -32,7 +32,7 @@ class TextFields extends React.Component {
     this.setState({
       [name]: event.target.value,
     });
-    console.log(e.target.value);
+    console.log(event.target.value);
   };
 
   render() {
