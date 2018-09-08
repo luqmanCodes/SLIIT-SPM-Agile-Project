@@ -5,4 +5,5 @@ export const DB_CONFIG = {
     projectId: "spm-agile-project",
     storageBucket: "spm-agile-project.appspot.com",
     messagingSenderId: "319635935821"
+
 }
