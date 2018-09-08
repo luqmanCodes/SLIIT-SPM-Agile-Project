@@ -37,7 +37,10 @@ function getSteps() {
 function getStepContent(stepIndex) {
   switch (stepIndex) {
     case 0:
-      return <FormPart1 />;
+      return <FormPart1 className={{
+          alignContent:'center'
+      }
+      } />;
     case 1:
       return <FormPart2 />;
     case 2:

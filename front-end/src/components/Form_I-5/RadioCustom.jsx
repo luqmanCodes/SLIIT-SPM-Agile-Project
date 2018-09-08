@@ -9,21 +9,21 @@ import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 const styles = {
   root_1: {
-    color: blue[600],
+    // color: blue[600],
     '&$checked': {
       color: blue[500],
     },
   },
   
   root_2: {
-    color: red[600],
+    // color: red[600],
     '&$checked': {
       color: red[500],
     },
   },
 
   root_3: {
-    color: green[600],
+    // color: green[600],
     '&$checked': {
       color: green[500],
     },

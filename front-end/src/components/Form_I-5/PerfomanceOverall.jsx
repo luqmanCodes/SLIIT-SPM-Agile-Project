@@ -1,20 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import { green, red, lightBlue, lightGreen, blue } from '@material-ui/core/colors';
+import Radio from '@material-ui/core/Radio';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
 const styles = {
-  root: {
-    color: green[600],
+  root_1: {
     '&$checked': {
       color: green[500],
+    },
+  },
+  root_2: {
+    '&$checked': {
+      color: lightGreen[500],
+    },
+  },
+  root_3: {
+    '&$checked': {
+      color: blue[500],
+    },
+  },
+  root_4: {
+    '&$checked': {
+      color: lightBlue[500],
+    },
+  },
+  root_5: {
+    '&$checked': {
+      color: red[500],
     },
   },
   checked: {},
@@ -27,110 +42,100 @@ const styles = {
   },
 };
 
-class CheckboxLabels extends React.Component {
+class RadioButtons extends React.Component {
   state = {
-    checkedA: false,
-    checkedB: false,
-    checkedC: false,
-    checkedD: false,
-    checkedE: false,
-    checkedF: false,
-    
+    selectedValue: '',
   };
 
-  handleChange = name => event => {
-    this.setState({ [name]: event.target.checked });
-    console.log(name);
-    // switch(name) {
-    //     case checkedA:
-    //         return (this.setState({ checkedB : event.target.unchecked })) ;
-
-    // }
-    
+  handleChange = event => {
+    this.setState({ selectedValue: event.target.value });
+    console.log(event.target.value);
   };
 
   render() {
     const { classes } = this.props;
 
     return (
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedA}
-              onChange={this.handleChange('checkedA')}
-              value="checkedA"
-              classes={{
-                root: classes.root,
-                checked: classes.checked,
-              }}
-            />
-          }
-          label="Outstanding"
+      <div>
+        <Radio
+          checked={this.state.selectedValue === 'a'}
+          onChange={this.handleChange}
+          label="exsds"
+          value="a"
+          name="Outstanging"
+          aria-label="A"
+          classes={{
+            root: classes.root_1,
+            checked: classes.checked,
+          }}
+          label="Outstanging"
         />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedB}
-              onChange={this.handleChange('checkedB')}
-              value="checkedB"
-              classes={{
-                root: classes.root,
-                checked: classes.checked,
-              }}
-            />
-          }
-          label="Custom color"
+        <label>
+        Outstanging
+        </label>
+        <Radio
+          checked={this.state.selectedValue === 'b'}
+          onChange={this.handleChange}
+          value="b"
+          name="radio-button-demo"
+          aria-label="B"
+          classes={{
+            root: classes.root_2,
+            checked: classes.checked,
+          }}
         />
-        {/* <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedC}
-              onChange={this.handleChange('checkedC')}
-              value="checkedC"
-              classes={{
-                root: classes.root,
-                checked: classes.checked,
-              }}
-            />
-          }
-          label="Good"
+        <label>
+        Very Good
+        </label>
+        <Radio
+          checked={this.state.selectedValue === 'c'}
+          onChange={this.handleChange}
+          value="c"
+          name="radio-button-demo"
+          aria-label="C"
+          classes={{
+            root: classes.root_3,
+            checked: classes.checked,
+          }}
         />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedE}
-              onChange={this.handleChange('checkedE')}
-              value="checkedE"
-              classes={{
-                root: classes.root,
-                checked: classes.checked,
-              }}
-            />
-          }
-          label="Marginal"
+        <label>
+        Good
+        </label>
+        <Radio
+          checked={this.state.selectedValue === 'd'}
+          onChange={this.handleChange}
+          value="d"
+          name="radio-button-demo"
+          aria-label="D"
+          classes={{
+            root: classes.root_4,
+            checked: classes.checked,
+          }}
         />
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={this.state.checkedF}
-              onChange={this.handleChange('checkedF')}
-              value="checkedF"
-              classes={{
-                root: classes.root,
-                checked: classes.checked,
-              }}
-            />
-          }
-          label="Unsaatisfactory"
-        /> */}
-      </FormGroup>
+        <label>
+        Marginal
+        </label>
+        <Radio
+          checked={this.state.selectedValue === 'e'}
+          onChange={this.handleChange}
+          value="e"
+          name="radio-button-demo"
+          aria-label="E"
+          classes={{
+            root: classes.root_5,
+            checked: classes.checked,
+          }}
+        />
+        <label>
+        Unsatisfactory
+        </label>
+      </div>
     );
   }
 }
 
-CheckboxLabels.propTypes = {
+RadioButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CheckboxLabels);
+export default withStyles(styles)(RadioButtons);

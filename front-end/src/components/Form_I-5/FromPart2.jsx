@@ -23,10 +23,7 @@ const styles = theme => ({
 
 class TextFields extends React.Component {
   state = {
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
+
   };
 
   handleChange = name => event => {
@@ -39,20 +36,22 @@ class TextFields extends React.Component {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
-        <TextField
-          id="describeDifferent"
-          label="Describe the differences, if any, between student's initial
-          contract and actual assignment which developed"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          placeholder=""
-          helperText="50 Words"
-          fullWidth
-          margin="normal"
+      <p>
+        <form className={classes.container} noValidate autoComplete="off">
+          <TextField
+            id="describeDifferent"
+            label="Describe the differences, if any, between student's initial
+            contract and actual assignment which developed"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            placeholder=""
+            helperText="50 Words"
+            fullWidth
+            margin="normal"
         />
       </form>
+      </p>
     );
   }
 }
