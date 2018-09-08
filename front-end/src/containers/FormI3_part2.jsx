@@ -87,46 +87,22 @@ class FormI3_part2 extends Component {
                                         </TableHead>
                                         <TableBody>
                                             <TableRow className={classes.row}>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
+                                                <CustomTableCell><TextField multiline required /></CustomTableCell>
+                                                <CustomTableCell><TextField multiline required /></CustomTableCell>
+                                                <CustomTableCell><TextField type="date" required /></CustomTableCell>
+                                                <CustomTableCell><TextField type="date" required /></CustomTableCell>
                                             </TableRow>
                                             <TableRow className={classes.row}>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
+                                                <CustomTableCell><TextField multiline required /></CustomTableCell>
+                                                <CustomTableCell><TextField multiline required /></CustomTableCell>
+                                                <CustomTableCell><TextField type="date" required /></CustomTableCell>
+                                                <CustomTableCell><TextField type="date" required /></CustomTableCell>
                                             </TableRow>
                                             <TableRow className={classes.row}>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                            </TableRow>
-                                            <TableRow className={classes.row}>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                            </TableRow>
-                                            <TableRow className={classes.row}>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                            </TableRow>
-                                            <TableRow className={classes.row}>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                            </TableRow>
-                                            <TableRow className={classes.row}>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField multiline /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
-                                                <CustomTableCell><TextField type="date" /></CustomTableCell>
+                                                <CustomTableCell><TextField multiline required /></CustomTableCell>
+                                                <CustomTableCell><TextField multiline required /></CustomTableCell>
+                                                <CustomTableCell><TextField type="date" required /></CustomTableCell>
+                                                <CustomTableCell><TextField type="date" required /></CustomTableCell>
                                             </TableRow>
                                         </TableBody>
                                     </Table>
@@ -144,7 +120,7 @@ class FormI3_part2 extends Component {
                                         <TableBody>
                                             <TableRow className={classes.row}>
                                                 <CustomTableCell>
-                                                    <TextField multiline
+                                                    <TextField multiline required
                                                         helperText="(Interns should maintain weekly entries at minimum in this area, providing the summary of the task and the task duration. Interns are also advised to maintain a blog where the intern can mention blog URL here.)"
                                                     />
                                                 </CustomTableCell>
@@ -156,7 +132,7 @@ class FormI3_part2 extends Component {
                                             </TableRow>
                                             <TableRow className={classes.row}>
                                                 <CustomTableCell>
-                                                    <TextField multiline
+                                                    <TextField multiline required
                                                         helperText="(Interns should maintain weekly entries at minimum in this area, providing the summary of the task and the task duration. Interns are also advised to maintain a blog where the intern can mention blog URL here.)"
                                                     />
                                                 </CustomTableCell>
