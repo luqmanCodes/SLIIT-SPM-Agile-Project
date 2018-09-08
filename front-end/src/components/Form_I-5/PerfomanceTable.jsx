@@ -9,7 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import UserTextField from './UserTextField';
-import SelectPerformance from './SelectPerfomance'; 
 import RadioCustom from './RadioCustom';
 
 const CustomTableCell = withStyles(theme => ({
@@ -59,8 +58,6 @@ const rows = [
     createData('Ability to learn'),
   ];
 
-const data = [];
-
 class PerformanceTable extends React.Component{
 
   constructor(props) {
@@ -73,7 +70,7 @@ class PerformanceTable extends React.Component{
     
     let tempState = this.state.performanceTableData;
     let status = false;
-    if(this.state.performanceTableData.length == 0) {
+    if(this.state.performanceTableData.length === 0) {
       let performanceObj = {
         id : perfID,
         level : e.target.value,
@@ -82,10 +79,11 @@ class PerformanceTable extends React.Component{
       tempState.push(performanceObj);
     } else {
       tempState.map (x => {
-          if(x.id == perfID) {
+          if(x.id === perfID) {
             x.level = e.target.value
             status = true;  
           }
+          return x;
       });
       if(!status) {
         let performanceObj = {
@@ -124,11 +122,6 @@ class PerformanceTable extends React.Component{
         </TableHead>
         <TableBody>
         {rows.map(row => {
-
-            let name;
-            let performance;
-            let comment; 
-
             return (
               <TableRow className={classes.row} key={row.id}>
                 <CustomTableCell component="th" scope="row">
@@ -138,9 +131,6 @@ class PerformanceTable extends React.Component{
                 <CustomTableCell ><UserTextField perfId={row.name} onChange={this.HandleTextfield} /></CustomTableCell>
               </TableRow>
             );
- 
-            data.push(createData(name, performance, comment));
-
           })}
         </TableBody>
       </Table>
