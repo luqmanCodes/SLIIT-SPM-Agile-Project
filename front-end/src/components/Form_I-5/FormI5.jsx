@@ -22,7 +22,6 @@ export default class FormI5 extends Component {
           performanceLevel: null,
           comments: null
         },
-
         workHabit: {
           habitId: null,
           performanceLevel: null,
@@ -40,16 +39,18 @@ export default class FormI5 extends Component {
         externalSupersorName: null,
         date: null,
       }
+
+      this.HandleDetails = this.HandleDetails.bind(this);
+
     }
 
-    HandleDetails(e) {
+    HandleDetails() {
       // this.setState({this.state.studentId: studentId,
       //                studentName: studentName,
       //                employeeName: employeeName,
       //                supervisorName: supervisorName,
       // });
       console.log('clicked');
-      e.preventDefault();
     }
 
     showState(){
@@ -67,17 +68,17 @@ export default class FormI5 extends Component {
         <br />
         <WorkHabitTable />
         <br />
-        <TextAreaCustom label={'List positive personal characteristics (Business Acumen, Vigor, Adaptability, Teamwork, Leadership, Confidence, etc.)'}/>
+        <TextAreaCustom id={'longinput1'} label={'List positive personal characteristics (Business Acumen, Vigor, Adaptability, Teamwork, Leadership, Confidence, etc.)'}/>
         <br />
-        <TextAreaCustom label={'List personal characteristics that will help the student in his/her professional development'}/>
+        <TextAreaCustom id={'longinput2'} label={'List personal characteristics that will help the student in his/her professional development'}/>
         <br />
-        <TextAreaCustom label={'How effective has the Internship Program been in meeting the needs of your organization?'}/>
+        <TextAreaCustom id={'longinput3'} label={'How effective has the Internship Program been in meeting the needs of your organization?'}/>
         <br />
-        <TextAreaCustom label={'Please suggest ways you feel we could make our program more meaningful to the student and you, the employer.'}/>
+        <TextAreaCustom id={'longinput4'} label={'Please suggest ways you feel we could make our program more meaningful to the student and you, the employer.'}/>
         <br />
-        <TextAreaCustom label={'Please comment on the appropriateness of the student\'s academic training as it related to a position in your organization.'}/>
+        <TextAreaCustom id={'longinput5'} label={'Please comment on the appropriateness of the student\'s academic training as it related to a position in your organization.'}/>
         <br />
-        <TextAreaCustom label={'Any other comments about the student or on the Faculty Advisor:'}/>
+        <TextAreaCustom id={'longinput6'} label={'Any other comments about the student or on the Faculty Advisor:'}/>
         <br />
         <PerformanceOverall />
       </div>

@@ -46,15 +46,6 @@ function createData(name, performance, comments) {
   return { id, name, performance, comments };
 }
 
-function HandleRadio(e) {
-    console.log(event.target.value);
-    e.preventDefault();
-}
-
-function HandleTextfield(e) {
-  e.
-  e.preventDefault();
-}
 
 const rows = [
     createData('Volume of work'),
@@ -71,9 +62,57 @@ const rows = [
 
 const data = [];
 
-function CustomizedTable(props) {
-  const { classes } = props;
+class PerformanceTable extends React.Component{
 
+  constructor(props) {
+    super(props);
+    this.state = {
+        performanceTableData :[]
+    };
+  }
+  HandleRadio = (e,perfID) => {
+    
+    let tempState = this.state.performanceTableData;
+    let status = false;
+    if(this.state.performanceTableData.length == 0) {
+      let performanceObj = {
+        id : perfID,
+        level : e.target.value,
+        comment : null
+      }
+      tempState.push(performanceObj);
+    } else {
+      tempState.map (x => {
+          if(x.id == perfID) {
+            x.level = e.target.value
+            status = true;  
+          }
+      });
+      if(!status) {
+        let performanceObj = {
+          id : perfID,
+          level : e.target.value,
+          comment : null
+        }
+        tempState.push(performanceObj);
+      }
+    }
+    this.setState({
+      performanceTableData:tempState
+    });
+    console.log(this.state);
+    e.preventDefault();
+  }
+
+  handle(name) {
+    console.log('name', name);
+  }
+
+  HandleTextfield = (e,perfID) => {
+    e.preventDefault();
+  }
+  render () {
+    const { classes } = this.props;
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -94,10 +133,10 @@ function CustomizedTable(props) {
             return (
               <TableRow className={classes.row} key={row.id}>
                 <CustomTableCell component="th" scope="row">
-                  {row.name}
+                  {row.name}  
                 </CustomTableCell>
-                <CustomTableCell ><RadioCustom onChange={HandleRadio.bind(this)}/></CustomTableCell>
-                <CustomTableCell ><UserTextField onChange={HandleTextfield.bind(this)} value={comment}/></CustomTableCell>
+                <CustomTableCell ><RadioCustom perfId={row.name} onChange={() => { this.handle(row.name); } }/></CustomTableCell>
+                <CustomTableCell ><UserTextField perfId={row.name} onChange={this.HandleTextfield} /></CustomTableCell>
               </TableRow>
             );
  
@@ -108,10 +147,11 @@ function CustomizedTable(props) {
       </Table>
     </Paper>
   );
+  }
 }
 
-CustomizedTable.propTypes = {
+PerformanceTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CustomizedTable);
+export default withStyles(styles)(PerformanceTable);

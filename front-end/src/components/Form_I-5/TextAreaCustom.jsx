@@ -20,22 +20,19 @@ const styles = theme => ({
 });
 
 class TextFields extends React.Component {
-
   constructor(props){
     super(props);
-    this.getDetails = this.getDetails.bind(this);
   }
+  
+  state = {
 
-  getDetails(){
-    return (
-      this.state.values
-    );
-  }
+  };
 
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value,
     });
+    console.log(e.target.value);
   };
 
   render() {
@@ -44,35 +41,16 @@ class TextFields extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          required
-          id="studentId"
-          label="Student ID"
-          defaultValue=""
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          required
-          id="studentName"
-          label="Student Name"
-          defaultValue=""
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          required
-          id="employeeName"
-          label="Employee Name"
-          defaultValue=""
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          required
-          id="supervisor Name"
-          label="Supervisor Name"
-          defaultValue=""
-          className={classes.textField}
+          id={this.props.id}
+          label={this.props.label}
+          multiline
+          InputLabelProps={{
+            shrink: true,
+          }}
+          placeholder=""
+          onChange={this.handleChange.bind(this)}
+          helperText="150 Words"
+          fullWidth
           margin="normal"
         />
       </form>

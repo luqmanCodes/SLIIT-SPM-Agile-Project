@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import TextField from './UserTextField';
-// import RadioCustom from './RadioCustom';
+import RadioCustom from './RadioCustom';
 
 
 const CustomTableCell = withStyles(theme => ({
@@ -81,8 +81,7 @@ function CustomizedTable(props) {
                 <CustomTableCell component="th" scope="row">
                   {row.name}
                 </CustomTableCell>
-                <CustomTableCell> </CustomTableCell>
-                {/* <CustomTableCell ><RadioCustom onChange={HandleCheckBox.bind(this)}/></CustomTableCell> */}
+                <CustomTableCell ><RadioCustom onChange={HandleCheckBox.bind(this)}/></CustomTableCell>
                 <CustomTableCell ><TextField /></CustomTableCell>
               </TableRow>
             );

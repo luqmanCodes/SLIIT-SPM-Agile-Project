@@ -19,37 +19,17 @@ const styles = theme => ({
   },
 });
 
-const currencies = [
-  {
-    value: 'USD',
-    label: '$',
-  },
-  {
-    value: 'EUR',
-    label: '€',
-  },
-  {
-    value: 'BTC',
-    label: '฿',
-  },
-  {
-    value: 'JPY',
-    label: '¥',
-  },
-];
-
 class TextFields extends React.Component {
-  state = {
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
-  };
 
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value,
-    });
+  constructor(props) {
+    super(props);
+    this.state = {
+      comments: '',
+      id:this.props.perfId
+    };  
+  }
+  handleChange = event => {
+    
   };
 
   render() {
@@ -58,15 +38,10 @@ class TextFields extends React.Component {
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          id="full-width"
-          label={this.props.label}
-          multiline
-          InputLabelProps={{
-            shrink: true,
-          }}
-          placeholder=""
-          helperText="150 Words"
-          fullWidth
+          id="comments"
+          label=""
+          className={classes.textField}
+          onChange={this.handleChange()}
           margin="normal"
         />
       </form>

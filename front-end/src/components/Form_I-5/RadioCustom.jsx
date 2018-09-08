@@ -40,12 +40,18 @@ const styles = {
 };
 
 class RadioButtons extends React.Component {
-  state = {
-    selectedValue: '',
-  };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      performanceId : this.props.perfId,
+      selectedValue: '',
+    };
+
+  }
   handleChange = event => {
     this.setState({ selectedValue: event.target.value });
+    this.props.onChange(event,this.state.performanceId);
   };
 
   render() {
