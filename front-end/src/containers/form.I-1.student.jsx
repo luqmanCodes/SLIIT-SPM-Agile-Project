@@ -33,53 +33,63 @@ class FormI1Student extends Component {
 
     constructor(props) {
         super(props);
+        this.db = this.props.app.database().ref().child('students');
         this.state = {
-            stdId: 'IT16154254',
-            name: 'A.H Luqman',
-            address: 'No 240/1, Dodangolla Akurana',
-            homePhone: '',
-            mobilePhone: '0768976540',
-            email: 'm.luqman077@gmail.com',
-            semester: '2',
-            year: '2',
-            cgpa: '2',
 
-            error : {
-                homePhone : {
-                    isError : false,
-                    message : 'Invalid Phone Number'
+            data: {
+                stdId: 'IT16154254',
+                name: 'A.H Luqman',
+                address: 'No 240/1, Dodangolla Akurana',
+                homePhone: '0812304613',
+                mobilePhone: '0768976540',
+                email: 'm.luqman077@gmail.com',
+                semester: '2',
+                year: '2',
+                cgpa: '2',
+            },
+            error: {
+                homePhone: {
+                    isError: false,
+                    message: 'Invalid Phone Number'
                 }
             }
         }
         this.handleOnChange = this.handleOnChange.bind(this);
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
     }
+    componentDidMount() {
+        this.db.once('value').then( snap => {
+            console.log(snap.val());
+        })
+    }
     //handler to attend all changes that happen to the form
     handleOnChange(e) {
         let prevError = this.state.error;
-        if(prevError[e.target.id] != null)
+        if (prevError[e.target.id] != null)
             prevError[e.target.id].isError = false;
+
+        let prevData = this.state.data;
+        prevData[e.target.id] = e.target.value;
         this.setState({
-            [e.target.id]: e.target.value,
-            error : prevError
+            data : prevData,
+            error: prevError
         });
         e.preventDefault();
     }
     onSubmitHandler(e) {
         e.preventDefault();
-        this.phonenumber(this.state.homePhone);
+        this.db.push().set(this.state.data);
     }
     phonenumber(inputtxt) {
         var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
-        if ((inputtxt.match(phoneno)))
-        {
+        if ((inputtxt.match(phoneno))) {
             return true;
         }
         else {
             const prevError = this.state.error;
             prevError.homePhone.isError = true;
             this.setState({
-                error : prevError
+                error: prevError
             })
             return false;
         }
@@ -99,36 +109,36 @@ class FormI1Student extends Component {
                                 </Grid>
                                 <Grid direction='row' alignItems="center" justify="center" container item md spacing={40}>
                                     <Grid item>
-                                        <TextField value={this.state.stdId} id='stdId' onChange={this.handleOnChange} label='Student ID' required />
+                                        <TextField value={this.state.data.stdId} id='stdId' onChange={this.handleOnChange} label='Student ID' required />
                                     </Grid>
                                     <Grid item>
-                                        <TextField value={this.state.name} id='name' onChange={this.handleOnChange} label='Student Name' required />
+                                        <TextField value={this.state.data.name} id='name' onChange={this.handleOnChange} label='Student Name' required />
                                     </Grid>
                                 </Grid>
                                 <Grid item md>
-                                    <TextField className={classes.fullTextField} value={this.state.address} id='address' fullWidth onChange={this.handleOnChange} label='Address' required />
+                                    <TextField className={classes.fullTextField} value={this.state.data.address} id='address' fullWidth onChange={this.handleOnChange} label='Address' required />
                                 </Grid>
                                 <Grid direction='row' alignItems="center" justify="center" container item md spacing={40}>
                                     <Grid item >
-                                        <TextField 
-                                            value={this.state.homePhone} 
+                                        <TextField
+                                            value={this.state.data.homePhone}
                                             id='homePhone'
                                             name='homePhone'
-                                            onChange={this.handleOnChange} 
-                                            label='Home Phone' 
-                                            type='tel' 
+                                            onChange={this.handleOnChange}
+                                            label='Home Phone'
+                                            type='tel'
                                             required
-                                            error = {this.state.error.homePhone.isError}
-                                            helperText = {this.state.error.homePhone.isError ? this.state.error.homePhone.message : ''} 
+                                            error={this.state.error.homePhone.isError}
+                                            helperText={this.state.error.homePhone.isError ? this.state.error.homePhone.message : ''}
                                         />
                                     </Grid>
                                     <Grid item >
-                                        <TextField value={this.state.mobilePhone} id='mobilePhone' onChange={this.handleOnChange} label='Mobile Phone' type='tel' required />
+                                        <TextField value={this.state.data.mobilePhone} id='mobilePhone' onChange={this.handleOnChange} label='Mobile Phone' type='tel' required />
                                     </Grid>
                                 </Grid>
                                 <Grid item md>
                                     <TextField
-                                        value={this.state.email}
+                                        value={this.state.data.email}
                                         id='email'
                                         onChange={this.handleOnChange}
                                         label='E-mail'
@@ -140,13 +150,13 @@ class FormI1Student extends Component {
                                 </Grid>
                                 <Grid container item direction='row' spacing={8} md>
                                     <Grid item md>
-                                        <TextField  value={this.state.semester} id='semester' onChange={this.handleOnChange} label='Semester' type='number' min="1" max="2" required />
+                                        <TextField value={this.state.data.semester} id='semester' onChange={this.handleOnChange} label='Semester' type='number' min="1" max="2" required />
                                     </Grid>
                                     <Grid item md>
-                                        <TextField value={this.state.year} id='year' onChange={this.handleOnChange} label='Year' type='number' min="1" max="4" required />
+                                        <TextField value={this.state.data.year} id='year' onChange={this.handleOnChange} label='Year' type='number' min="1" max="4" required />
                                     </Grid>
                                     <Grid item md>
-                                        <TextField value={this.state.cgpa} id='cgpa' onChange={this.handleOnChange} label='CGPA' type='number' required />
+                                        <TextField value={this.state.data.cgpa} id='cgpa' onChange={this.handleOnChange} label='CGPA' type='number' required />
                                     </Grid>
                                 </Grid>
                                 <br />
