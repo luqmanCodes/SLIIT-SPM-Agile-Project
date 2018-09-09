@@ -32,9 +32,6 @@ const styles = theme => ({
  * It will be required only to be filled once
  */
 class FormI3_part1 extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         const { classes } = this.props;

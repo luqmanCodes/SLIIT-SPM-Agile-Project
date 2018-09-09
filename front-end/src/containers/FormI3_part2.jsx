@@ -56,9 +56,7 @@ const styles = theme => ({
  * It will be required only to be filled sixtimes
  */
 class FormI3_part2 extends Component {
-    constructor(props) {
-        super(props);
-    }
+
 
     render() {
         const { classes } = this.props;
