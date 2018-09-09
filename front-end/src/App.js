@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import FormI1Student from './containers/form.I-1.student';
 import firebase from 'firebase';
 import {DB_CONFIG} from './config';
 class App extends Component {
