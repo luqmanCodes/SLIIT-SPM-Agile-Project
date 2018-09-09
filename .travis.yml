@@ -3,7 +3,7 @@ node_js :
   - "6.0"
 script :
   - cd front-end
-  - npm install -g
+  - npm install
   - npm test
   - npm run build
 install:
