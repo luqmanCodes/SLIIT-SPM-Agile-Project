@@ -47,21 +47,38 @@ class CompanyRegistration extends Component {
     
     constructor(props){
       super(props);
+     // this.db=this.props.app.database().ref().child('students');
       this.state = {
         name: '',
         address: '',
-        nicNo:'',
+        nic:'',
         dob:'',
         mobileNo:'',
         studentNo:'',
         degreeCompleted:'',
-        cGPA:'',
+        cgpa:'',
         companyName:'',
         companyAddress:'',
         internDuration:'',
         year:'',
         semester:'',
-        register:{},
+        register:{
+          name:'',
+          address:'',
+          nic:'',
+          dob:'',
+          mobilePhone:'',
+          stdId:'',
+          year:'',
+          semester:'',
+          cgpa:'',
+          company:{
+            companyName:'',
+            companyAddress:'',
+          },
+          internDuration:'',
+
+        },
       };
     }
     
@@ -94,26 +111,28 @@ class CompanyRegistration extends Component {
         e.preventDefault();
        
         console.log("submitted");
-        // console.log(this.state.name);
-       /*  this.setState({register:{        
+         console.log(this.state.name);
+         this.setState({register:{        
               name:this.state.name,
               address:this.state.address,
-              nic:this.state.nicNo,
+              nic:this.state.nic,
               dob:this.state.dob,
               mobilePhone:this.state.mobileNo,
               stdId:this.state.studentNo,
-              degreeCompleted:this.state.degreeCompleted,
+              year:this.state.year,
+              semester:this.state.semester,
               cgpa:this.state.cGPA,
               company:{
                 companyName:this.state.companyName,
-                companyAddress:this.state.address,
+                companyAddress:this.state.companyAddress,
               },
               internDuration:this.state.internDuration,
          }},()=>{
              console.log(this.state.register);
+          //   this.db.push().set(this.state.register);
              console.log("submitted");
-             alert("submitted");
-         });*/
+             alert("successfully Registered");
+         });
          //console.log(this.refs.name.value);
          
       }
@@ -170,7 +189,7 @@ class CompanyRegistration extends Component {
                   <td>
                     <div className="Text"> 
                     <TextField
-                      id="nicno"
+                      id="nic"
                       required label="NICNo"                     
                       className="textField"
                       onChange={this.handleChange}
@@ -185,7 +204,9 @@ class CompanyRegistration extends Component {
                   <td>
                     <TextField
                       id="dob"
-                      required label="DOB"
+                      type="date"
+                      required 
+                      helperText="DOB"
                       className="textField"
                       onChange={this.handleChange}
                       margin="normal"
@@ -230,6 +251,7 @@ class CompanyRegistration extends Component {
                                   
                         <TextField
                         id="year"
+                        type="number"
                         required label="Year Completed"
                         className="textField"
                         onChange={this.handleChange}
@@ -237,6 +259,7 @@ class CompanyRegistration extends Component {
                         />
                          <TextField
                         id="semester"
+                        type="number"
                         required label="Semester Completed"
                         className="textField"
                         onChange={this.handleChange}
@@ -248,6 +271,7 @@ class CompanyRegistration extends Component {
                     <div className="Text"> 
                     <TextField
                       id="cGPA"
+                      type="number"
                       required label="CGPA"
                       className="textField"
                       onChange={this.handleChange}
