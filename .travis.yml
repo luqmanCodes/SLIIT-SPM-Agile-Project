@@ -4,11 +4,8 @@ node_js :
 script :
   - cd front-end
   - npm install
-  - npm run build
   - npm test
-  - cd ..
-  - cd functions
-  - npm install
+  - npm run build
 install:
   - npm install -g firebase-tools
 after_success:
