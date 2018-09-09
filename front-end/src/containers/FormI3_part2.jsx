@@ -52,8 +52,8 @@ const styles = theme => ({
 
 
 /**
- * Form I-1 part 1 the static part
- * It will be required only to be filled once
+ * Form I-1 part 2 
+ * It will be required only to be filled sixtimes
  */
 class FormI3_part2 extends Component {
     constructor(props) {
