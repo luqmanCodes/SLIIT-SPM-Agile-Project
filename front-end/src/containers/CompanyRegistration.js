@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import '../Registration.css';
 import 'typeface-roboto';
@@ -158,7 +157,7 @@ class CompanyRegistration extends Component {
             <tbody>           
             <tr>
             <br/>
-            <div className="root" className="cell">
+            <div className="cell">
                 <Typography variant="title" gutterBottom>
                     Student Details
                 </Typography>
@@ -255,7 +254,7 @@ class CompanyRegistration extends Component {
                         required label="Year Completed"
                         className="textField"
                         onChange={this.handleChange}
-                        margin="small"
+                        margin="normal"
                         />
                          <TextField
                         id="semester"
@@ -263,7 +262,7 @@ class CompanyRegistration extends Component {
                         required label="Semester Completed"
                         className="textField"
                         onChange={this.handleChange}
-                        margin="small"
+                        margin="normal"
                         />
                     </div>
                   </td>
@@ -282,7 +281,7 @@ class CompanyRegistration extends Component {
                 </tr>
                 <br/>
                 <tr>
-                    <td> <div className="root" className="cell">
+                    <td> <div className="cell">
                       <Typography variant="title">
                         Company Details
                       </Typography>
@@ -327,7 +326,7 @@ class CompanyRegistration extends Component {
             </tbody>
         </table>
         <br/>
-        <Grid container spacing={4} justify='flex-end'>
+        <Grid container spacing={0} justify='flex-end'>
             <Grid item md={4}>
                <Button variant='contained' type='submit' className={classes.subButton} size='large'  >Register</Button>
                <Button variant='contained' className={classes.subButton} size='large'>Clear</Button>  
