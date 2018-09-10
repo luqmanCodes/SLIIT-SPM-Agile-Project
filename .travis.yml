@@ -4,8 +4,8 @@ node_js :
 script :
   - cd front-end
   - npm install
-  - npm run build
   - npm test
+  - npm run build
   - cd ..
   - cd functions
   - npm install

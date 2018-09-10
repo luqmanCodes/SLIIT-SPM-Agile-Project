@@ -19,10 +19,6 @@ const styles = theme => ({
 
 class TextFields extends React.Component {
 
-  constructor(props){
-    super(props);
-  }
-
   // handleChange = name => event => {
   //   this.setState({
   //     [name]: event.target.value,
