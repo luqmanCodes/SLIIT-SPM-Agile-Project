@@ -33,7 +33,7 @@ class FormI1Student extends Component {
 
     constructor(props) {
         super(props);
-        this.db = this.props.app.database().ref().child('students');
+       // this.db = this.props.app.database().ref().child('students');
         this.state = {
 
             data: {
@@ -58,9 +58,9 @@ class FormI1Student extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
     }
     componentDidMount() {
-        this.db.once('value').then( snap => {
+       /* this.db.once('value').then( snap => {
             console.log(snap.val());
-        })
+        })*/
     }
     //handler to attend all changes that happen to the form
     handleOnChange(e) {
@@ -78,7 +78,7 @@ class FormI1Student extends Component {
     }
     onSubmitHandler(e) {
         e.preventDefault();
-        this.db.push().set(this.state.data);
+       // this.db.push().set(this.state.data);
     }
     phonenumber(inputtxt) {
         var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
