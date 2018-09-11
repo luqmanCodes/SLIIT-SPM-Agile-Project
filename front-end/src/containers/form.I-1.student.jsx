@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 const styles = theme => ({
     root: {
         height: '600px',
+        width: '800px',
         marginTop: '30px'
     },
     container: {
@@ -22,10 +23,13 @@ const styles = theme => ({
     subButton: {
         color: 'white',
         background: 'green',
-        marginTop: '30px'
+        marginTop: '100px'
     },
     fullTextField: {
         width: 440
+    },
+    smallText: {
+        width: 50
     }
 });
 // Jsx class which extends React.Component
@@ -51,6 +55,10 @@ class FormI1Student extends Component {
                 homePhone: {
                     isError: false,
                     message: 'Invalid Phone Number'
+                },
+                email: {
+                    isError : false,
+                    message : 'One of the Email provided is Invalid'
                 }
             }
         }
@@ -78,21 +86,36 @@ class FormI1Student extends Component {
     }
     onSubmitHandler(e) {
         e.preventDefault();
+        console.log( this.validateMultipleEmails(this.state.data.email,'email'));
+        if(this.validatePhoneNumber(this.state.data.homePhone,'homePhone') && this.validateMultipleEmails(this.state.data.email,'email')) {
+            console.log('Valid')
+        }
        // this.db.push().set(this.state.data);
     }
-    phonenumber(inputtxt) {
-        var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
-        if ((inputtxt.match(phoneno))) {
+    validatePhoneNumber(phoneNo,stateId) {
+        const phoneNoRegEx = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+        if (phoneNo.match(phoneNoRegEx))
             return true;
-        }
         else {
             const prevError = this.state.error;
-            prevError.homePhone.isError = true;
+            prevError[stateId].isError = true;
             this.setState({
                 error: prevError
             })
             return false;
         }
+    }
+    validateMultipleEmails(emailString,stateId) {
+        const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        let correctCount = 0;
+        let emailArr = emailString.split(',');
+        emailArr.forEach(element => {
+            if(element.match(emailRegEx)) 
+                correctCount ++;
+        });
+        if(correctCount === emailArr.length)
+            return true;
+        return false;
     }
     //render method built using react material ui. Grid layout is used
     render() {
@@ -109,14 +132,14 @@ class FormI1Student extends Component {
                                 </Grid>
                                 <Grid direction='row' alignItems="center" justify="center" container item md spacing={40}>
                                     <Grid item>
-                                        <TextField value={this.state.data.stdId} id='stdId' onChange={this.handleOnChange} label='Student ID' required />
+                                        <TextField disabled value={this.state.data.stdId} id='stdId' onChange={this.handleOnChange} label='Student ID' required />
                                     </Grid>
                                     <Grid item>
-                                        <TextField value={this.state.data.name} id='name' onChange={this.handleOnChange} label='Student Name' required />
+                                        <TextField disabled value={this.state.data.name} id='name' onChange={this.handleOnChange} label='Student Name' required />
                                     </Grid>
                                 </Grid>
                                 <Grid item md>
-                                    <TextField className={classes.fullTextField} value={this.state.data.address} id='address' fullWidth onChange={this.handleOnChange} label='Address' required />
+                                    <TextField disabled className={classes.fullTextField} value={this.state.data.address} id='address' fullWidth onChange={this.handleOnChange} label='Address' required />
                                 </Grid>
                                 <Grid direction='row' alignItems="center" justify="center" container item md spacing={40}>
                                     <Grid item >
@@ -142,21 +165,22 @@ class FormI1Student extends Component {
                                         id='email'
                                         onChange={this.handleOnChange}
                                         label='E-mail'
-                                        helperText='Use Comma(,) to seperate multiple e-mail addresses'
+                                        error={this.state.error.email.isError}
+                                        helperText= {(this.state.error.email.isError)? this.state.error.email.message :'Use Comma(,) to seperate multiple e-mail addresses'}
                                         required
                                         multiline
-                                        className={classes.fullTextField}
+                                        className={classes.fullTextField}   
                                     />
                                 </Grid>
-                                <Grid container item direction='row' spacing={8} md>
-                                    <Grid item md>
-                                        <TextField value={this.state.data.semester} id='semester' onChange={this.handleOnChange} label='Semester' type='number' min="1" max="2" required />
+                                <Grid container item direction='row'spacing={8} md justify="center">
+                                    <Grid item md justify="center">
+                                        <TextField className={classes.smallText} disabled value={this.state.data.semester} id='semester' onChange={this.handleOnChange} label='Semester' required />
                                     </Grid>
                                     <Grid item md>
-                                        <TextField value={this.state.data.year} id='year' onChange={this.handleOnChange} label='Year' type='number' min="1" max="4" required />
+                                        <TextField disabled value={this.state.data.year} id='year' onChange={this.handleOnChange} label='Year'  required />
                                     </Grid>
                                     <Grid item md>
-                                        <TextField value={this.state.data.cgpa} id='cgpa' onChange={this.handleOnChange} label='CGPA' type='number' required />
+                                        <TextField disabled value={this.state.data.cgpa} id='cgpa' onChange={this.handleOnChange} label='CGPA'  required />
                                     </Grid>
                                 </Grid>
                                 <br />
