@@ -6,6 +6,9 @@ script :
   - npm install
   - npm test
   - npm run build
+  - cd ..
+  - cd functions
+  - npm install
 install:
   - npm install -g firebase-tools
 after_success:

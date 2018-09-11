@@ -4,6 +4,8 @@ import {Route} from 'react-router-dom';
 import './App.css';
 import FormI5 from './components/Form_I-5/FormI5';
 import Menu from './components/MainUI/Menu';
+import firebase from 'firebase';
+import {DB_CONFIG} from './config';
 class App extends Component {
 
   constructor(props) {
