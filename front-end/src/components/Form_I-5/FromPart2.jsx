@@ -19,36 +19,43 @@ const styles = theme => ({
 });
 
 class TextFields extends React.Component {
-  state = {
 
-  };
+  constructor(props){
+    super(props);
+  
+    this.state = {
+      data: null,
+    };
+  }
 
-  handleChange = name => event => {
+  handleChange = () => event => {
     this.setState({
-      [name]: event.target.value,
+      [event.target.id]: event.target.value,
     });
   };
 
+  componentWillUnmount(){
+    this.props.setFormPart2Value(this.state);
+  }
+
   render() {
     const { classes } = this.props;
-
     return (
-      <p>
-        <form className={classes.container} noValidate autoComplete="off">
-          <TextField
-            id="describeDifferent"
-            label="Describe the differences, if any, between student's initial
-            contract and actual assignment which developed"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            placeholder=""
-            helperText="50 Words"
-            fullWidth
-            margin="normal"
-        />
-      </form>
-      </p>
+      <form className={classes.container} noValidate autoComplete="off">
+        <TextField
+          id='formPart2val'
+          label="Describe the differences, if any, between student's initial
+          contract and actual assignment which developed"
+          onChange={this.handleChange()}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          placeholder=""
+          helperText="50 Words"
+          fullWidth
+          margin="normal"
+      />
+    </form>
     );
   }
 }

@@ -54,20 +54,16 @@ class FormI5 extends React.Component {
         stepperCompleted:0,
       }
     }
-
-    showState(){
-      console.log(this.state);
-    }
     
     render() {
       const { classes } = this.props;
-    
+      
       return (
         <div className={classes.root}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <StepperCustom />
+                <StepperCustom formValue={this.state}/>
               </Paper>
             </Grid>
           </Grid>
@@ -79,36 +75,5 @@ class FormI5 extends React.Component {
   FormI5.propTypes = {
     classes: PropTypes.object.isRequired,
   };
-
-  //   render() {
-  //   return (
-  //     <div>
-  //       {/* <FormPart1 />
-  //       <br />
-  //       <FormPart2 />
-  //       <br />
-  //       <PerformanceTable />
-  //       <br />
-  //       <WorkHabitTable />
-  //       <br />
-  //       <TextAreaCustom id={'longinput1'} label={'List positive personal characteristics (Business Acumen, Vigor, Adaptability, Teamwork, Leadership, Confidence, etc.)'}/>
-  //       <br />
-  //       <TextAreaCustom id={'longinput2'} label={'List personal characteristics that will help the student in his/her professional development'}/>
-  //       <br />
-  //       <TextAreaCustom id={'longinput3'} label={'How effective has the Internship Program been in meeting the needs of your organization?'}/>
-  //       <br />
-  //       <TextAreaCustom id={'longinput4'} label={'Please suggest ways you feel we could make our program more meaningful to the student and you, the employer.'}/>
-  //       <br />
-  //       <TextAreaCustom id={'longinput5'} label={'Please comment on the appropriateness of the student\'s academic training as it related to a position in your organization.'}/>
-  //       <br />
-  //       <TextAreaCustom id={'longinput6'} label={'Any other comments about the student or on the Faculty Advisor:'}/>
-  //       <br />
-  //       <PerformanceOverall /> */}
-
-  //       <StepperCustom />
-
-  //     </div>
-  //   );
-  // }
 
 export default withStyles(styles)(FormI5);

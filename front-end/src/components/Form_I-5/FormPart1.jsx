@@ -19,24 +19,40 @@ const styles = theme => ({
 
 class TextFields extends React.Component {
 
-  // handleChange = name => event => {
-  //   this.setState({
-  //     [name]: event.target.value,
-  //   });
-  //   console.log(event.target.value);
-  // };
+  constructor(props){
+    super(props);
+
+    this.state = {
+      studentId: null,
+      studentName: null,
+      employeeName: null,
+      supervisorName: null,
+    };
+  }
+
+  handleChange = () => event => {
+    this.setState({
+      [event.target.id]: event.target.value,
+    });
+    // console.log(event.target.id+' '+event.target.value);
+    // this.props.setFormPart1Value(this.state);
+  }
+
+  componentWillUnmount() {
+    this.props.setFormPart1Value(this.state);
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off">
+      <form className={classes.container} noValidate autoComplete="off" >
         <TextField
           required
           id="studentId"
           label="Student ID"
           className={classes.textField}
-          onChange={this.handleChange}
+          onChange={this.handleChange()}
           margin="normal"
         />
         <TextField
@@ -44,7 +60,7 @@ class TextFields extends React.Component {
           id="studentName"
           label="Student Name"
           className={classes.textField}
-          onChange={this.handleChange}
+          onChange={this.handleChange()}
           margin="normal"
         />
         <TextField
@@ -52,7 +68,7 @@ class TextFields extends React.Component {
           id="employeeName"
           label="Employee Name"
           className={classes.textField}
-          onChange={this.handleChange}
+          onChange={this.handleChange()}
           margin="normal"
         />
         <TextField
@@ -60,7 +76,7 @@ class TextFields extends React.Component {
           id="supervisorName"
           label="Supervisor Name"
           className={classes.textField}
-          onChange={this.handleChange}
+          onChange={this.handleChange()}
           margin="normal"
         />
       </form>

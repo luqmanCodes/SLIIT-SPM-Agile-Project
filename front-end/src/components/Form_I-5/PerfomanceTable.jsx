@@ -34,6 +34,7 @@ const styles = theme => ({
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default,
       hover: true,
+      width: '300px',
     },
   },
 });
