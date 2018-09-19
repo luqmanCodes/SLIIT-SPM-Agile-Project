@@ -84,7 +84,8 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
       case 1:
         return <FormPart2 setFormPart2Value={this.getValueFormPart2.bind(this)}/>;
       case 2:
-        return <PerformanceTable />;
+        return <PerformanceTable clickNext={this.handleNext.bind(this)} 
+        actiStep={this.state.activeStep} clickBack={this.handleBack.bind(this)}/>;
       case 3:
           return <WorkHabitTable />;
       case 4:
@@ -197,13 +198,15 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
               <br />
               <div>
                 <Button
-                  disabled={activeStep === 0}
+                  disabled={activeStep === 0 || activeStep === 2}
                   onClick={this.handleBack}
                   className={classes.backButton}
+                  hidden={activeStep === 0}
                 >
                   Back
                 </Button>
-                <Button variant="contained" color="primary" onClick={this.handleNext}>
+                <Button variant="contained" color="primary" onClick={this.handleNext}
+                disabled={activeStep === 2}>
                   {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 </Button>
               </div>
