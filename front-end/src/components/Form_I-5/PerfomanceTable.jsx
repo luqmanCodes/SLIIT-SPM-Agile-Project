@@ -151,19 +151,19 @@ class PerformanceTable extends React.Component{
       </Table>
       <br />
       <div>
-      <Button
-        disabled={this.props.actiStep === 0}
-        onClick={this.handleBack.bind(this)}
-        className={classes.backButton}
-      >
-         Back
-      </Button>
-      <label></label>&nbsp;<label> </label>
-      <Button variant="contained" color="primary" onClick={this.validateField.bind(this)}>
-                  Next
-      </Button>
-      <br />
-      <p> </p>
+        <Button
+          disabled={this.props.actiStep === 0}
+          onClick={this.handleBack.bind(this)}
+          className={classes.backButton}
+        >
+          Back
+        </Button>
+        <label></label>&nbsp;<label> </label>
+        <Button variant="contained" color="primary" onClick={this.validateField.bind(this)}>
+                    Next
+        </Button>
+        <br />
+        <p> </p>
       </ div>
     </Paper>
   );

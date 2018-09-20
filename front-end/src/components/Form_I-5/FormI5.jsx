@@ -4,7 +4,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+//Components
 import StepperCustom from './StepperCustom';
+
+//Redux components
+import { Provider } from 'react-redux';
+import store from '../../store';
 
 const styles = theme => ({
   root: {
@@ -57,8 +62,8 @@ class FormI5 extends React.Component {
     
     render() {
       const { classes } = this.props;
-      
       return (
+        <Provider store={store}>
         <div className={classes.root}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
@@ -68,6 +73,7 @@ class FormI5 extends React.Component {
             </Grid>
           </Grid>
         </div>
+        </Provider>
       );
     }
   }

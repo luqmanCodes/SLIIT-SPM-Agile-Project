@@ -1,8 +1,8 @@
-import { FETCH_DATA, SUBMIT_PART, SUCCESS_VALIDATION_PART1, FAILURE_VALIDATION_PART1 } from './action-types';
+import { FETCH_DATA, SUBMIT_PART1, SUCCESS_VALIDATION_PART1, FAILURE_VALIDATION_PART1 } from '../actions/action-types';
 
 const initialState = {
-    studentId: '',
-    studentName: '',
+    studentId: 'IT16159518',
+    studentName: 'Suhail',
     detailsPart1 : []
 }
 
@@ -11,23 +11,23 @@ export default function(state = initialState, action) {
         case FETCH_DATA:
             return {
                 ...state,
-                studentId: payload,
-                studentName: payload,
+                studentId: 'IT16159518',
+                studentName: 'Suhail',
             }
-        case SUBMIT_PART:
+        case SUBMIT_PART1:
             return{
                 ...state,
-                detailsPart1: payload,
+                detailsPart1: action.payload,
             }
         case SUCCESS_VALIDATION_PART1:
             return {
                 ...state,
-                detailsPart1: payload,
+                valitation: action.payload,
             }
         case FAILURE_VALIDATION_PART1:
             return {
                 ...state,
-                detailsPart1: payload,
+                valitation: action.payload,
             }
         default: 
             return state;

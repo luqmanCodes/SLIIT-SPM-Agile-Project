@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+import { connect } from 'react-redux';
+import { fetchData } from '../../actions/formI5Part1-actions';
+import { compose } from 'redux';
 
 const styles = theme => ({
   container: {
@@ -17,16 +22,17 @@ const styles = theme => ({
   },
 });
 
-class TextFields extends React.Component {
+class FormPart1 extends React.Component {
 
   constructor(props){
     super(props);
 
     this.state = {
-      studentId: null,
-      studentName: null,
-      employeeName: null,
-      supervisorName: null,
+      studentId: '',
+      studentName: '',
+      employeeName: '',
+      supervisorName: '',
+      formPart2val: '',
     };
   }
 
@@ -34,23 +40,48 @@ class TextFields extends React.Component {
     this.setState({
       [event.target.id]: event.target.value,
     });
-    // console.log(event.target.id+' '+event.target.value);
-    // this.props.setFormPart1Value(this.state);
+    console.log(event.target.id+' '+event.target.value);
+  }
+
+  componentWillMount() {
+    this.props.fetchData();
   }
 
   componentWillUnmount() {
     this.props.setFormPart1Value(this.state);
   }
 
+  hanldeSubmit(e) {
+    e.preventDefault();
+    console.log('submitted');
+  }
+
+  validateField() {
+    if(this.state.employeeName === '' || 
+    this.state.supervisorName === '' || this.state.formPart2val === '') {
+      alert('Please fill out the form');
+    } else {
+      this.props.clickNext();
+    }
+  }
+  
+  handleBack() {
+    if(true) {
+      this.props.clickBack();
+    }
+  }
+
   render() {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off" >
+      <form className={classes.container} noValidate autoComplete="off" onSubmit={this.hanldeSubmit.bind(this)}>
+      <div>
         <TextField
           required
           id="studentId"
           label="Student ID"
+          value={this.props.studentId}
           className={classes.textField}
           onChange={this.handleChange()}
           margin="normal"
@@ -59,6 +90,7 @@ class TextFields extends React.Component {
           required
           id="studentName"
           label="Student Name"
+          value={this.props.studentName}
           className={classes.textField}
           onChange={this.handleChange()}
           margin="normal"
@@ -67,6 +99,7 @@ class TextFields extends React.Component {
           required
           id="employeeName"
           label="Employee Name"
+          value={this.state.employeeName}
           className={classes.textField}
           onChange={this.handleChange()}
           margin="normal"
@@ -75,17 +108,60 @@ class TextFields extends React.Component {
           required
           id="supervisorName"
           label="Supervisor Name"
+          value={this.state.supervisorName}
           className={classes.textField}
           onChange={this.handleChange()}
           margin="normal"
         />
+        </div>
+        <div>
+          <TextField
+            id='formPart2val'
+            label="Describe the differences, if any, between student's initial
+            contract and actual assignment which developed"
+            value={this.state.formPart2val}
+            onChange={this.handleChange()}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            placeholder=""
+            helperText="50 Words"
+            fullWidth
+            margin="normal"
+            />
+        </div>
+        <br />
+        <div>
+          <Button
+            disabled={this.props.actiStep === 0}
+            onClick={this.handleBack.bind(this)}
+            className={classes.backButton}
+          >
+            Back
+          </Button>
+          <label></label>&nbsp;<label> </label>
+          <Button variant="contained" color="primary" onClick={this.validateField.bind(this)}>
+                      Next
+          </Button>
+          <br />
+          <p> </p>
+        </div>
       </form>
     );
   }
 }
 
-TextFields.propTypes = {
+FormPart1.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TextFields);
+const mapStateToProps = state => ({
+  studentId: state.formPart1.studentId,
+  studentName: state.formPart1.studentName
+})
+
+// export default connect(null, { fetchData }, withStyles(styles))(TextFields);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, { fetchData }),
+)(FormPart1);

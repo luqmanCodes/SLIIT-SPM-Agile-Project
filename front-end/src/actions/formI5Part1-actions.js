@@ -1,4 +1,4 @@
-import { FETCH_DATA, SUBMIT_PART, SUCCESS_VALIDATION_PART1, FAILURE_VALIDATION_PART1 } from './action-types';
+import { FETCH_DATA, SUBMIT_PART1, SUCCESS_VALIDATION_PART1, FAILURE_VALIDATION_PART1 } from './action-types';
 
 export const fetchData = () => dispatch => {
     dispatch({

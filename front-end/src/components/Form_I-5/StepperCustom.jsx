@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 
 //Importing user components
 import FormPart1 from './FormPart1';
-import FormPart2 from './FromPart2';
 import PerformanceTable from './PerfomanceTable';
 import WorkHabitTable from './WorkHabitTable';
 import OtherDetails from './OtherDetails';
@@ -69,7 +68,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   }
 
   getSteps() {
-    return ['Fill the Student, Employee and Supervisor Details', 'Student\'s Initial Contract' , 
+    return ['Student, Employee and Supervisor Details and Initial Contract', 
       'Select Performances of the Student' , 'Select the Work Habits of the Student'
       , 'Other Details' , 'Select overall performance of the Student'];
   }
@@ -79,19 +78,25 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
       case 0:
         return <FormPart1 setFormPart1Value={this.getValueFormPart1.bind(this)} className={{
             alignContent:'center'
-        }
-        } />;
-      case 1:
-        return <FormPart2 setFormPart2Value={this.getValueFormPart2.bind(this)}/>;
-      case 2:
-        return <PerformanceTable clickNext={this.handleNext.bind(this)} 
+          }} 
+        clickNext={this.handleNext.bind(this)} 
         actiStep={this.state.activeStep} clickBack={this.handleBack.bind(this)}/>;
+      case 1:
+        return <PerformanceTable 
+        clickNext={this.handleNext.bind(this)} 
+        actiStep={this.state.activeStep} clickBack={this.handleBack.bind(this)}/>;
+      case 2:
+          return <WorkHabitTable 
+          clickNext={this.handleNext.bind(this)} 
+          actiStep={this.state.activeStep} clickBack={this.handleBack.bind(this)}/>;
       case 3:
-          return <WorkHabitTable />;
+          return <OtherDetails getAllval={this.getAllOtherDatails.bind(this)} 
+          clickNext={this.handleNext.bind(this)} 
+          actiStep={this.state.activeStep} clickBack={this.handleBack.bind(this)}/>;
       case 4:
-          return <OtherDetails getAllval={this.getAllOtherDatails.bind(this)} />;
-      case 5:
-          return <PerformanceOverall />;
+          return <PerformanceOverall 
+          clickNext={this.handleNext.bind(this)} 
+          actiStep={this.state.activeStep} clickBack={this.handleBack.bind(this)}/>;
       default:
         return 'Uknown stepIndex';
     }
@@ -196,7 +201,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
             <div>
               <div>{this.getStepContent(activeStep)}</div>
               <br />
-              <div>
+              {/* <div>
                 <Button
                   disabled={activeStep === 0 || activeStep === 2}
                   onClick={this.handleBack}
@@ -209,7 +214,7 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
                 disabled={activeStep === 2}>
                   {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                 </Button>
-              </div>
+              </div> */}
             </div>
           )}
         </div>

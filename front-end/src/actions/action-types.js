@@ -1,6 +1,10 @@
-//export const JNK = "MKM";
+//Fetching data and getting data from each component
 export const FETCH_DATA = 'FETCH_DATA';
 export const SUBMIT_PART1 = 'SUBMIT_PART1';
+export const SUBMIT_PERFORMANCE_TABLE = 'SUBMIT_PERFORMANCE_TABLE';
+export const SUBMIT_HABIT_TABLE = 'SUBMIT_HABIT_TABLE';
+export const SUBMIT_OTHER_DETAILS = 'SUBMIT_OTHER_DETAILS';
+export const SUBMIT_OVERALL = 'SUBMIT_OVERALL';
 
 //Form validations for each stepper
 export const SUCCESS_VALIDATION_PART1 = 'SUCCESS_VALIDATION_PART1';
