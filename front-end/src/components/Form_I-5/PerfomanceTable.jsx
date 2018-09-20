@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import UserTextField from './UserTextField';
 import RadioCustom from './RadioCustom';
@@ -34,6 +35,7 @@ const styles = theme => ({
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default,
       hover: true,
+      width: '300px',
     },
   },
 });
@@ -108,6 +110,19 @@ class PerformanceTable extends React.Component{
   HandleTextfield = (e,perfID) => {
     e.preventDefault();
   }
+
+  validateField() {
+    if(true) {
+      this.props.clickNext();
+    }
+  }
+  
+  handleBack() {
+    if(true) {
+      this.props.clickBack();
+    }
+  }
+
   render () {
     const { classes } = this.props;
   return (
@@ -134,6 +149,22 @@ class PerformanceTable extends React.Component{
           })}
         </TableBody>
       </Table>
+      <br />
+      <div>
+        <Button
+          disabled={this.props.actiStep === 0}
+          onClick={this.handleBack.bind(this)}
+          className={classes.backButton}
+        >
+          Back
+        </Button>
+        <label></label>&nbsp;<label> </label>
+        <Button variant="contained" color="primary" onClick={this.validateField.bind(this)}>
+                    Next
+        </Button>
+        <br />
+        <p> </p>
+      </ div>
     </Paper>
   );
   }
