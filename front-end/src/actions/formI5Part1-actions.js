@@ -7,7 +7,7 @@ export const fetchData = () => dispatch => {
     });
 }
 
-export const submitPart1 = formValue => dispatch => {
+export const submitPart1 = (formValue) => dispatch => {
     dispatch({
         type: SUBMIT_PART1,
         payload: formValue, //give the corrent output 
