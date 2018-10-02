@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 
 import UserTextField from './UserTextField';
 import RadioCustom from './RadioCustom';
+import { TextField } from '@material-ui/core';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -144,6 +145,7 @@ class PerformanceTable extends React.Component{
                 </CustomTableCell>
                 <CustomTableCell ><RadioCustom perfId={row.name} onChange={() => { this.handle(row.name); } }/></CustomTableCell>
                 <CustomTableCell ><UserTextField perfId={row.name} onChange={this.HandleTextfield} /></CustomTableCell>
+                {/* <CustomTableCell ></CustomTableCell> */}
               </TableRow>
             );
           })}

@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { connect } from 'react-redux';
-import { fetchData } from '../../actions/formI5Part1-actions';
+import { fetchData, submitPart1 } from '../../actions/formI5Part1-actions';
 import { compose } from 'redux';
 
 const styles = theme => ({
@@ -40,7 +40,7 @@ class FormPart1 extends React.Component {
     this.setState({
       [event.target.id]: event.target.value,
     });
-    console.log(event.target.id+' '+event.target.value);
+    // console.log(event.target.id+' '+event.target.value);
   }
 
   componentWillMount() {
@@ -51,16 +51,17 @@ class FormPart1 extends React.Component {
     this.props.setFormPart1Value(this.state);
   }
 
-  hanldeSubmit(e) {
-    e.preventDefault();
-    console.log('submitted');
-  }
-
   validateField() {
     if(this.state.employeeName === '' || 
     this.state.supervisorName === '' || this.state.formPart2val === '') {
       alert('Please fill out the form');
     } else {
+      let values = {
+        employeeName: this.state.employeeName,
+        supervisorName: this.state.supervisorName,
+        formPart2val: this.state.formPart2val,
+      }
+      this.props.submitPart1(values);
       this.props.clickNext();
     }
   }
@@ -75,7 +76,7 @@ class FormPart1 extends React.Component {
     const { classes } = this.props;
 
     return (
-      <form className={classes.container} noValidate autoComplete="off" onSubmit={this.hanldeSubmit.bind(this)}>
+      <form className={classes.container} noValidate autoComplete="off">
       <div>
         <TextField
           required
@@ -153,6 +154,8 @@ class FormPart1 extends React.Component {
 
 FormPart1.propTypes = {
   classes: PropTypes.object.isRequired,
+  fetchData: PropTypes.func.isRequired,
+  
 };
 
 const mapStateToProps = state => ({
@@ -163,5 +166,5 @@ const mapStateToProps = state => ({
 // export default connect(null, { fetchData }, withStyles(styles))(TextFields);
 export default compose(
   withStyles(styles),
-  connect(mapStateToProps, { fetchData }),
+  connect(mapStateToProps, { fetchData, submitPart1 }),
 )(FormPart1);

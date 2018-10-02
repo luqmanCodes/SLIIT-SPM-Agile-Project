@@ -23,22 +23,26 @@ class TextFields extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: '',
+      comment: '',
       id:this.props.perfId
     };  
   }
-  handleChange = event => {
-    
-  };
+  handleChange(e) {
+    e.preventDefault();
+    console.log([e.target.id] + '  ' + e.target.value);
+    this.setState({
+      [e.target.id]: e.target.value,
+    });
+  }
 
   render() {
     const { classes } = this.props;
-
     return (
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          id="comments"
+          id={this.props.prefId}
           label=""
+          value={this.state.comment}
           className={classes.textField}
           onChange={this.handleChange()}
           margin="normal"
