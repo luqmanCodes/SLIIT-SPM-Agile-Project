@@ -39,7 +39,9 @@ class LoginForm extends Component {
     }
     setLocalStorage(result) {
         localStorage.setItem("loginEmail", result.user.email);
-        localStorage.setItem("loginName", result.user.displayName);
+        let displayNameArr = result.user.displayName.split(" ");
+        localStorage.setItem("loginName",displayNameArr[1] + displayNameArr[2] );
+        localStorage.setItem("loginItNo",displayNameArr[0]);
     }
     loginOnClick(e) {
         e.preventDefault();
