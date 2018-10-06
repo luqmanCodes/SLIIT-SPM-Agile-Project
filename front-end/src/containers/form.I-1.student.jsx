@@ -42,15 +42,15 @@ class FormI1Student extends Component {
         this.state = {
 
             data: {
-                stdId: 'IT16154254',
-                name: 'A.H Luqman',
-                address: 'No 240/1, Dodangolla Akurana',
-                homePhone: '0812304613',
-                mobilePhone: '0768976540',
-                email: 'm.luqman077@gmail.com',
-                semester: '2',
-                year: '2',
-                cgpa: '2',
+                stdId: '',
+                name: '',
+                address: '',
+                homePhone: '',
+                mobilePhone: '',
+                email: '',
+                semester: '',
+                year: '',
+                cgpa: '',
                 status: 'FILLED_FORMI1'
             },
             error: {
@@ -70,7 +70,8 @@ class FormI1Student extends Component {
     componentDidMount() {
         this.db.orderByKey().equalTo(localStorage.getItem("loginItNo")).limitToFirst(1).once("value").then(snap => {
             let retObj = snap.val()[localStorage.getItem("loginItNo")];
-            this.setState({data:{...retObj}})
+            console.log(retObj);
+            this.setState({data:{...retObj,homePhone:""}})
         }).catch(err => {
             console.log(err);
         })
