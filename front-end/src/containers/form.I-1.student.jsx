@@ -108,7 +108,7 @@ class FormI1Student extends Component {
         }
     }
     validateMultipleEmails(emailString,stateId) {
-        const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        const emailRegEx = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
         let correctCount = 0;
         let emailArr = emailString.split(',');
         emailArr.forEach(element => {
