@@ -19,8 +19,8 @@ const styles = theme => ({
         maxWidth: 500,
     },
     root2: {
-       height:600,
-       width:1200,
+       height:650,
+       width:1100,
        marginLeft:20,
     },
     textField: {
@@ -46,7 +46,7 @@ class CompanyRegistration extends Component {
     
     constructor(props){
       super(props);
-     // this.db=this.props.app.database().ref().child('students');
+      //this.db=this.props.app.database().ref().child('students');
       this.state = {
         name: '',
         address: '',
@@ -128,7 +128,7 @@ class CompanyRegistration extends Component {
               internDuration:this.state.internDuration,
          }},()=>{
              console.log(this.state.register);
-          //   this.db.push().set(this.state.register);
+            // this.db.push().set(this.state.register);
              console.log("submitted");
              alert("successfully Registered");
          });
@@ -151,13 +151,14 @@ class CompanyRegistration extends Component {
                           Company Registration
                      </Typography>
                 </div>
-        </Grid>    
+        </Grid> 
+        <div className="tab">   
         <table >
         
             <tbody>           
             <tr>
             <br/>
-            <div className="cell">
+            <div >
                 <Typography variant="title" gutterBottom>
                     Student Details
                 </Typography>
@@ -165,41 +166,55 @@ class CompanyRegistration extends Component {
             </tr>
                 <tr>
                   <td >
-                  <TextField
-                    id="name"
-                    required label="Name"
-                    className="textField"
-                    onChange={this.handleChange}
-                    margin="normal"
-                  />
+                   <div >
+                    <TextField
+                      id="studentNo"
+                      label="StudentNo"
+                      className="textField"
+                      defaultValue={this.props.stDetail.StNo}
+                      onChange={this.handleChange}
+                      margin="normal"
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                    />
+                    </div>
                   </td>
                   <td >
                     <div className="Text">
-                    <TextField
-                      id="address"
-                      required label="Address"
+                     <TextField
+                      id="name"
+                      label="Name"
                       className="textField"
+                      defaultValue={this.props.stDetail.StName}
                       onChange={this.handleChange}
                       margin="normal"
+                      InputProps={{
+                        readOnly: true,
+                      }}
                     />
                     </div>
-                  
+                
                   </td>
                   <td>
                     <div className="Text"> 
                     <TextField
-                      id="nic"
-                      required label="NICNo"                     
+                      id="email"
+                      label="email"
                       className="textField"
+                      defaultValue={this.props.stDetail.StEmail}
                       onChange={this.handleChange}
                       margin="normal"
-                    />
+                      InputProps={{
+                        readOnly: true,
+                      }}
+                    />                   
                     </div>
                   </td>
                 
                 </tr>
  
-                <tr >
+               <tr >
                   <td>
                     <TextField
                       id="dob"
@@ -225,8 +240,8 @@ class CompanyRegistration extends Component {
                   <td>
                     <div className="Text"> 
                     <TextField
-                      id="email"
-                      required label="email"
+                      id="nic"
+                      required label="NICNo"                     
                       className="textField"
                       onChange={this.handleChange}
                       margin="normal"
@@ -236,19 +251,20 @@ class CompanyRegistration extends Component {
                 </tr>
                 <tr >
                   <td>
-                    <TextField
-                      id="studentNo"
-                      required label="StudentNo"
+                   <TextField
+                      id="address"
+                      required label="Address"
                       className="textField"
                       onChange={this.handleChange}
                       margin="normal"
                     />
+                  
                   </td>
                   <td>
                     <div className="Text"> 
                         <br/>
-                                  
-                        <TextField
+                    <div>
+                      <TextField
                         id="year"
                         type="number"
                         required label="Year Completed"
@@ -256,7 +272,9 @@ class CompanyRegistration extends Component {
                         onChange={this.handleChange}
                         margin="normal"
                         />
-                         <TextField
+                    </div>
+                    <div>
+                       <TextField
                         id="semester"
                         type="number"
                         required label="Semester Completed"
@@ -264,6 +282,9 @@ class CompanyRegistration extends Component {
                         onChange={this.handleChange}
                         margin="normal"
                         />
+                    </div>             
+                       
+                     
                     </div>
                   </td>
                   <td>
@@ -281,7 +302,7 @@ class CompanyRegistration extends Component {
                 </tr>
                 <br/>
                 <tr>
-                    <td> <div className="cell">
+                    <td> <div >
                       <Typography variant="title">
                         Company Details
                       </Typography>
@@ -325,8 +346,15 @@ class CompanyRegistration extends Component {
                 
             </tbody>
         </table>
+        </div>
         <br/>
         <Grid container spacing={0} justify='flex-end'>
+            <Grid item md={4}>
+              
+            </Grid>   
+            <Grid item md={4}>
+             
+            </Grid>   
             <Grid item md={4}>
                <Button variant='contained' type='submit' className={classes.subButton} size='large'  >Register</Button>
                <Button variant='contained' className={classes.subButton} size='large'>Clear</Button>  

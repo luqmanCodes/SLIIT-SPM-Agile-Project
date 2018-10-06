@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { Card, CardContent, Button, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
+import CompanyRegistration from '../../containers/CompanyRegistration';
 
 const styles = {
     card: {
@@ -31,7 +32,13 @@ class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loggedInBy: 'null'
+            loggedInBy: 'null',
+            Student:false,//made changes ghazi
+            StudentDetails:{//made changes ghazi
+                StNo:"IT16118300",
+                StName:"Ghazi Ismail",
+                StEmail:"gazzsmile@gmail.com"
+            }
         }
         this.loginOnClick = this.loginOnClick.bind(this);
         this.provider = new firebase.auth.GoogleAuthProvider();
@@ -40,7 +47,13 @@ class LoginForm extends Component {
     loginOnClick(e) {
         e.preventDefault();
         const id = e.target.id;
-        app.auth().signInWithPopup(this.provider)
+        if(id==='student')//made changes ghazi
+        {
+            this.setState({
+                Student:true
+            });
+        }
+     /*   app.auth().signInWithPopup(this.provider)
             .then(result => {
                 this.setState({
                     loggedInBy: id
@@ -48,28 +61,40 @@ class LoginForm extends Component {
             })
             .catch(err => {
 
-            });
+            });*/
+           
     }
     render() {
         const { classes } = this.props;
-        return (
-            <div className={classes.root}>
-                <Card className={classes.card} elevation={5}>
-                    <CardContent>
-                        <Grid container direction="column" spacing={40}>
-                            <Grid item>
-                            <Button className={classes.button} id='student' onClick={this.loginOnClick}>Student Login</Button>
+        if(this.state.Student)//made changes ghazi
+        {
+            return (
+                <div className={classes.root}>
+                 <CompanyRegistration stDetail={this.state.StudentDetails}/>
+                </div>);
+        }
+        else
+        {
+            return (
+                <div className={classes.root}>
+                    <Card className={classes.card} elevation={5}>
+                        <CardContent>
+                            <Grid container direction="column" spacing={40}>
+                                <Grid item>
+                                <Button className={classes.button} id='student' onClick={this.loginOnClick}>Student Login</Button>
+                                </Grid>
+                                <Grid item>
+                                <Button className={classes.button} id='supervisor' onClick={this.loginOnClick}>Supervisor Login</Button>
+                                </Grid>
+                                <Grid item>
+                                <Button className={classes.button} id='manager' onClick={this.loginOnClick}>Manager Login</Button>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                            <Button className={classes.button} id='supervisor' onClick={this.loginOnClick}>Supervisor Login</Button>
-                            </Grid>
-                            <Grid item>
-                            <Button className={classes.button} id='manager' onClick={this.loginOnClick}>Manager Login</Button>
-                            </Grid>
-                        </Grid>
-                    </CardContent>
-                </Card>
-            </div>);
+                        </CardContent>
+                    </Card>
+                </div>);
+        }
+        
     }
 }
 
