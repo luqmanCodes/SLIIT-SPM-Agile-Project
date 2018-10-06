@@ -5,6 +5,7 @@ import { Card, CardContent, Button, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 import CompanyRegistration from '../../containers/CompanyRegistration';
+import ManagerDashboard from '../../containers/ManagerDashboard';
 
 const styles = {
     card: {
@@ -67,10 +68,10 @@ class LoginForm extends Component {
     render() {
         const { classes } = this.props;
         if(this.state.Student)//made changes ghazi
-        {
+        {// <CompanyRegistration stDetail={this.state.StudentDetails}/>
             return (
                 <div className={classes.root}>
-                 <CompanyRegistration stDetail={this.state.StudentDetails}/>
+                    <ManagerDashboard/>
                 </div>);
         }
         else
