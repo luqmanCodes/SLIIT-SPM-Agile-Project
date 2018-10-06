@@ -33,7 +33,7 @@ class FormI1Student extends Component {
 
     constructor(props) {
         super(props);
-       // this.db = this.props.app.database().ref().child('students');
+        this.db = this.props.fireApp.database().ref().child('students');
         this.state = {
 
             data: {
@@ -58,9 +58,11 @@ class FormI1Student extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
     }
     componentDidMount() {
-       /* this.db.once('value').then( snap => {
+       this.db.once('value').then( snap => {
             console.log(snap.val());
-        })*/
+        }).catch(err => {
+            console.log(err);
+        })
     }
     //handler to attend all changes that happen to the form
     handleOnChange(e) {
