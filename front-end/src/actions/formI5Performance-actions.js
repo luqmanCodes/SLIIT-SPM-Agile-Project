@@ -1,10 +1,10 @@
 import { SUBMIT_PERFORMANCE_TABLE, SUCCESS_VALIDATION_PERFORMANCE, FAILURE_VALIDATION_PERPORMANCE } from './action-types';
 
-export const submitData = data => dispatch => {
+export const submitPerformanceLevel = (formValue) => dispatch => {
     dispatch({
         type: SUBMIT_PERFORMANCE_TABLE,
-        payload: data,
-    });
+        payload: formValue,
+    })
 }
 
 export const validation_success = () => dispatch => {

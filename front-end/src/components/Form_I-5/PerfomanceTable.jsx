@@ -9,9 +9,13 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-import UserTextField from './UserTextField';
+// import UserTextField from './UserTextField';
 import RadioCustom from './RadioCustom';
 import { TextField } from '@material-ui/core';
+
+import { connect } from 'react-redux';
+import { fetchData, submitPerformanceLevel } from '../../actions/formI5Performance-actions';
+import { compose } from 'redux';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -66,7 +70,7 @@ class PerformanceTable extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-        performanceTableData :[]
+        performanceTableData :[],
     };
   }
   HandleRadio = (e,perfID) => {
@@ -108,13 +112,22 @@ class PerformanceTable extends React.Component{
     console.log('name', name);
   }
 
-  HandleTextfield = (e,perfID) => {
-    e.preventDefault();
-  }
-
   validateField() {
+    let check = false;
+    this.state.performanceTableData.forEach(x => {
+      if(this.state.performanceTableData.length !== 10 || x.level === null 
+        || x.comment === null) {
+        check = false;
+      } else {
+        check = true;
+      }
+    });
+
     if(true) {
+      this.props.submitPerformanceLevel(this.state.performanceTableData);
       this.props.clickNext();
+    } else {
+      alert('Fill the out the form');
     }
   }
   
@@ -122,6 +135,37 @@ class PerformanceTable extends React.Component{
     if(true) {
       this.props.clickBack();
     }
+  }
+
+  handleText = (e) => {
+    // console.log([e.target.id]+ "  " + e.target.value);
+    let status = false;
+    if(this.state.performanceTableData.length === 0) {
+      let perObj = {
+        id: e.target.id,
+        comment: e.target.value,
+        level: null,
+      }
+      this.state.performanceTableData.push(perObj);
+    } else {
+      this.state.performanceTableData.map (x => {
+        if(x.id === e.target.id) {
+          x.comment = e.target.value
+          status = true;
+        }
+        return x;
+      });
+      if(!status){
+        let perObj = {
+          id : e.target.id,
+          level: null,
+          comment: e.target.value,
+        }
+        this.state.performanceTableData.push(perObj);
+      }
+    }
+    // console.log(this.state);
+    e.preventDefault();
   }
 
   render () {
@@ -143,8 +187,9 @@ class PerformanceTable extends React.Component{
                 <CustomTableCell component="th" scope="row">
                   {row.name}  
                 </CustomTableCell>
-                <CustomTableCell ><RadioCustom perfId={row.name} onChange={() => { this.handle(row.name); } }/></CustomTableCell>
-                <CustomTableCell ><UserTextField perfId={row.name} onChange={this.HandleTextfield} /></CustomTableCell>
+                {/* <CustomTableCell ><RadioCustom perfId={row.name} onChange={() => { this.handle(row.name); } }/></CustomTableCell> */}
+                <CustomTableCell ><RadioCustom perfId={row.name} onChange={this.HandleRadio }/></CustomTableCell>
+                <CustomTableCell ><TextField fullWidth={true} label={"Comments"} id={row.name} onChange={this.handleText}/></CustomTableCell>
                 {/* <CustomTableCell ></CustomTableCell> */}
               </TableRow>
             );
@@ -176,4 +221,12 @@ PerformanceTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PerformanceTable);
+const mapStateToProps = state => ({
+
+})
+
+// export default withStyles(styles)(PerformanceTable);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, {submitPerformanceLevel}),
+)(PerformanceTable);

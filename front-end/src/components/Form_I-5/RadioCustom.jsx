@@ -57,24 +57,13 @@ class RadioButtons extends React.Component {
     return (
       <div>
         <Radio
-          checked={this.state.selectedValue === 'c'}
-          onChange={this.handleChange}
-          value="c"
-          name="radio-button-demo"
-          aria-label="C"
-          classes={{
-            root: classes.root_3,
-            checked: classes.checked,
-          }}
-        />
-        <Radio
           checked={this.state.selectedValue === 'a'}
           onChange={this.handleChange}
           value="a"
           name="radio-button-demo"
-          aria-label="a"
+          aria-label="A"
           classes={{
-            root: classes.root_1,
+            root: classes.root_3,
             checked: classes.checked,
           }}
         />
@@ -84,6 +73,17 @@ class RadioButtons extends React.Component {
           value="b"
           name="radio-button-demo"
           aria-label="B"
+          classes={{
+            root: classes.root_1,
+            checked: classes.checked,
+          }}
+        />
+        <Radio
+          checked={this.state.selectedValue === 'c'}
+          onChange={this.handleChange}
+          value="c"
+          name="radio-button-demo"
+          aria-label="C"
           classes={{
             root: classes.root_2,
             checked: classes.checked,
