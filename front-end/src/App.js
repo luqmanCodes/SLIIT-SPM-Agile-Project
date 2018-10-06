@@ -3,7 +3,6 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import './App.css';
 
-import FormI1Student from './containers/form.I-1.student';
 import firebase from 'firebase';
 import {DB_CONFIG} from './config';
 import FormI5 from './components/Form_I-5/FormI5';
