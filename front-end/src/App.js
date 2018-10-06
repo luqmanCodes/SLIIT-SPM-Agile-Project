@@ -3,11 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React, { Component } from 'react';
-import './App.css';
-//import firebase from 'firebase';
-//import {DB_CONFIG} from './config';
-import CompanyRegistration from './containers/CompanyRegistration';
-// import Test from './containers/Test';
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import Login from './components/Auth/LoginForm';
+import firebase from 'firebase';
+import {DB_CONFIG} from './config';
+const fireApp = firebase.initializeApp(DB_CONFIG);
+export const app = fireApp; 
 
 class App extends Component {
  /* constructor(props){
@@ -16,9 +17,11 @@ class App extends Component {
   }*/
   render() {
     return (
-      <div className="App">
-        <div><CompanyRegistration/></div>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Login}/>
+        </Switch>
+      </Router>
     );
   }
 }
