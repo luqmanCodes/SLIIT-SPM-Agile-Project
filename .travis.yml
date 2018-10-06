@@ -12,5 +12,7 @@ install:
   - npm install
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN --only hosting
-
+cache:
+  directories:
+  - node_modules
 
