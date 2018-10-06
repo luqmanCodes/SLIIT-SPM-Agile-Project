@@ -55,7 +55,7 @@ class TextFields extends React.Component {
             shrink: true,
           }}
           placeholder=""
-          onChange={this.handleChange()}
+          onChange={this.handleChange}
           helperText="150 Words"
           fullWidth
           margin="normal"

@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextAreaCustom from './TextAreaCustom';
 import Button from '@material-ui/core/Button';
+import { TextField } from '@material-ui/core';
+
+import { connect } from 'react-redux';
+import { fetchData, submitOtherDetails } from '../../actions/form5OtherDetails-actions';
+import { compose } from 'redux';
 
 const styles = theme => ({
   root: {
@@ -35,22 +40,32 @@ class OtherDetails extends Component {
       longinput6: null,
       data: null,
     }
+
+    this.handleInput = this.handleInput.bind(this);
   }
 
-  handleInput(data){
-    // console.log(data);
+  handleInput(e){
+    // // console.log(data);
     this.setState({
-      data: data,
+      [e.target.id]: e.target.value,
     });
-  }
-
-  componentWillUnmount() {
-    // console.log(this.state);
-    // this.props.getAllval(this.state);
+    console.log([e.target.id]+" "+e.target.value);
   }
 
   validateField() {
-    if(true) {
+
+    let check = false;
+    // let data = this.
+    // this.state.forEach(x => {
+    //   if(x === null){
+    //     check = false;
+    //   } else {
+    //     check = true;
+    //   }
+    // });
+
+    console.log(this.state);
+    if(check) {
       this.props.clickNext();
     }
   }
@@ -66,18 +81,25 @@ class OtherDetails extends Component {
     return (
       <div>
         <div>
-        <TextAreaCustom id={'longinput1'} getData={this.handleInput.bind(this)} label={'List positive personal characteristics (Business Acumen, Vigor, Adaptability, Teamwork, Leadership, Confidence, etc.)'}/>
         <br />
-        <TextAreaCustom id={'longinput2'} getData={this.handleInput.bind(this)} label={'List personal characteristics that will help the student in his/her professional development'}/>
-        <br />
-        <TextAreaCustom id={'longinput3'} getData={this.handleInput.bind(this)} label={'How effective has the Internship Program been in meeting the needs of your organization?'}/>
-        <br />
-        <TextAreaCustom id={'longinput4'} getData={this.handleInput.bind(this)} label={'Please suggest ways you feel we could make our program more meaningful to the student and you, the employer.'}/>
-        <br />
-        <TextAreaCustom id={'longinput5'} getData={this.handleInput.bind(this)} label={'Please comment on the appropriateness of the student\'s academic training as it related to a position in your organization.'}/>
-        <br />
-        <TextAreaCustom id={'longinput6'} getData={this.handleInput.bind(this)} label={'Any other comments about the student or on the Faculty Advisor:'}/>
-        <br />
+        <TextField id={'longinput1'} fullWidth={true} onChange={this.handleInput} label={'List positive personal characteristics (Business Acumen, Vigor, Adaptability, Teamwork, Leadership, Confidence, etc.)'}/>
+        <br /><br /><br />
+
+        <TextField id={'longinput2'} fullWidth={true} onChange={this.handleInput} label={'List personal characteristics that will help the student in his/her professional development'}/>
+        <br /><br /><br />
+
+        <TextField id={'longinput3'} fullWidth={true} onChange={this.handleInput} label={'How effective has the Internship Program been in meeting the needs of your organization?'}/>
+        <br /><br /><br />
+
+        <TextField id={'longinput4'} fullWidth={true} onChange={this.handleInput} label={'Please suggest ways you feel we could make our program more meaningful to the student and you, the employer.'}/>
+        <br /><br /><br />
+
+        <TextField id={'longinput5'} fullWidth={true} onChange={this.handleInput} label={'Please comment on the appropriateness of the student\'s academic training as it related to a position in your organization.'}/>
+        <br /><br /><br />
+
+        <TextField id={'longinput6'} fullWidth={true} onChange={this.handleInput} label={'Any other comments about the student or on the Faculty Advisor:'}/>
+        <br /><br /><br />
+
         </div>
         <div>
           <Button
@@ -102,4 +124,12 @@ OtherDetails.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(OtherDetails);
+const mapStateToProps = state => ({
+
+})
+
+// export default withStyles(styles)(OtherDetails);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, {submitOtherDetails}),
+)(OtherDetails);

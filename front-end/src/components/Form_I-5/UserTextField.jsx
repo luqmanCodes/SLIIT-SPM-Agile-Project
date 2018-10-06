@@ -25,14 +25,16 @@ class TextFields extends React.Component {
     this.state = {
       comment: '',
       id:this.props.perfId
-    };  
+    }; 
   }
+  
   handleChange(e) {
-    e.preventDefault();
+    e.preventDefault(e);
     console.log([e.target.id] + '  ' + e.target.value);
     this.setState({
       [e.target.id]: e.target.value,
     });
+    
   }
 
   render() {
@@ -44,7 +46,7 @@ class TextFields extends React.Component {
           label=""
           value={this.state.comment}
           className={classes.textField}
-          onChange={this.handleChange()}
+          onChange={this.handleChange}
           margin="normal"
         />
       </form>
