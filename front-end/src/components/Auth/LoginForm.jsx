@@ -59,6 +59,7 @@ class LoginForm extends Component {
                     });
                 break;
             case "supervisor":
+                    this.props.history.push("/supervisor");
                 break;
             case "manager":
                 firebase.auth().signInWithPopup(this.provider)
