@@ -40,8 +40,18 @@ class SupervisorLogin extends Component {
             [e.target.name]: e.target.value
         });
     }
+    setLocalStorage(result) {
+        localStorage.setItem("loginEmail", result.user.email);
+    }
     onSubmit(e) {
         e.preventDefault();
+        this.props.fireApp.auth().signInWithEmailAndPassword(this.state.username, this.state.password).catch(function(error) {
+            console.log(error);
+        })
+        .then(result => {
+            this.setLocalStorage(result);
+            this.props.history.push("/supervisor/"+result.user.email);
+        });
     }
     render() {
         
@@ -60,7 +70,8 @@ class SupervisorLogin extends Component {
                                 value={this.state.username}
                                 onChange={this.onChange.bind(this)}
                                 name="username"
-                                label="Username">
+                                label="Email"
+                                type="email">
                             </TextField><br />
                             <TextField
                                 required
