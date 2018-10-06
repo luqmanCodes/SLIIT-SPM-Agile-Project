@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { app } from '../../App';
 import firebase from 'firebase';
 import { Card, CardContent, Button, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
-
 const styles = {
     card: {
         maxWidth: 300,
@@ -19,11 +17,11 @@ const styles = {
             background: 'black'
         }
     },
-    root:{
-        position:'absolurete',
-        marginTop:'50%',
-        marginLeft:'50%',
-        zIndex:5
+    root: {
+        position: 'absolurete',
+        marginTop: '50%',
+        marginLeft: '50%',
+        zIndex: 5
     }
 };
 
@@ -32,23 +30,47 @@ class LoginForm extends Component {
         super(props);
         this.state = {
             loggedInBy: 'null'
+
         }
         this.loginOnClick = this.loginOnClick.bind(this);
         this.provider = new firebase.auth.GoogleAuthProvider();
         this.provider.setCustomParameters({ hd: 'my.sliit.lk' });
+        console.log(this.props.history);
+    }
+    setLocalStorage(result) {
+        localStorage.setItem("loginEmail", result.user.email);
+        localStorage.setItem("loginName", result.user.displayName);
     }
     loginOnClick(e) {
         e.preventDefault();
         const id = e.target.id;
-        app.auth().signInWithPopup(this.provider)
-            .then(result => {
-                this.setState({
-                    loggedInBy: id
-                });
-            })
-            .catch(err => {
+        switch (id) {
+            case "student":
+                firebase.auth().signInWithPopup(this.provider)
+                    .then(result => {
+                        this.setLocalStorage(result);
+                        console.log(result);
+                        this.props.history.push("/student/" + result.user.email);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+                break;
+            case "supervisor":
+                break;
+            case "manager":
+                firebase.auth().signInWithPopup(this.provider)
+                    .then(result => {
+                        this.setLocalStorage(result);
+                        this.props.history.push("/manager/" + result.user.email);
+                    })
+                    .catch(err => {
+                        //TO-DO Error message
+                    });
+                break;
+            default:
+        }
 
-            });
     }
     render() {
         const { classes } = this.props;
@@ -58,13 +80,13 @@ class LoginForm extends Component {
                     <CardContent>
                         <Grid container direction="column" spacing={40}>
                             <Grid item>
-                            <Button className={classes.button} id='student' onClick={this.loginOnClick}>Student Login</Button>
+                                <Button className={classes.button} id='student' onClick={this.loginOnClick}>Student Login</Button>
                             </Grid>
                             <Grid item>
-                            <Button className={classes.button} id='supervisor' onClick={this.loginOnClick}>Supervisor Login</Button>
+                                <Button className={classes.button} id='supervisor' onClick={this.loginOnClick}>Supervisor Login</Button>
                             </Grid>
                             <Grid item>
-                            <Button className={classes.button} id='manager' onClick={this.loginOnClick}>Manager Login</Button>
+                                <Button className={classes.button} id='manager' onClick={this.loginOnClick}>Manager Login</Button>
                             </Grid>
                         </Grid>
                     </CardContent>

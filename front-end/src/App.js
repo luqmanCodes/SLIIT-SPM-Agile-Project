@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import Login from './components/Auth/LoginForm';
-import firebase from 'firebase';
+import StudentDashboard from './containers/student-dashboard';
+import firebase from 'firebase/app';
 import {DB_CONFIG} from './config';
 const fireApp = firebase.initializeApp(DB_CONFIG);
 export const app = fireApp; 
@@ -11,7 +12,9 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' component={Login}/>
+          <Route exact path='/' render={(props)=><Login {...props} fireApp={fireApp}/>}/>
+          <Route name="student" path='/student/:email'  render={(props)=><StudentDashboard {...props} fireApp={fireApp}/>}
+          />
         </Switch>
       </Router>
     );
