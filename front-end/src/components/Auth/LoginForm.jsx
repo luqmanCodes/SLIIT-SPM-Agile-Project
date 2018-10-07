@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
-import { Card, CardContent, Button, Grid } from '@material-ui/core';
+import { Card, CardContent, Button, Grid,Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import green from '@material-ui/core/colors/green';
 const styles = {
     card: {
-        maxWidth: 300,
+        maxWidth: 280,
         minHeight: 250,
+    },
+    title:{
+        margin:5
     },
     button: {
         background: green[500],
@@ -19,8 +22,8 @@ const styles = {
     },
     root: {
         position: 'absolurete',
-        marginTop: '50%',
-        marginLeft: '50%',
+        marginTop: '10%',
+        marginLeft: '42%',
         zIndex: 5
     }
 };
@@ -39,7 +42,9 @@ class LoginForm extends Component {
     }
     setLocalStorage(result) {
         localStorage.setItem("loginEmail", result.user.email);
-        localStorage.setItem("loginName", result.user.displayName);
+        let displayNameArr = result.user.displayName.split(" ");
+        localStorage.setItem("loginName",displayNameArr[1] + displayNameArr[2] );
+        localStorage.setItem("loginItNo",displayNameArr[0]);
     }
     loginOnClick(e) {
         e.preventDefault();
@@ -57,6 +62,7 @@ class LoginForm extends Component {
                     });
                 break;
             case "supervisor":
+                    this.props.history.push("/supervisor");
                 break;
             case "manager":
                 firebase.auth().signInWithPopup(this.provider)
@@ -79,6 +85,9 @@ class LoginForm extends Component {
                 <Card className={classes.card} elevation={5}>
                     <CardContent>
                         <Grid container direction="column" spacing={40}>
+                            <Typography className={classes.title} variant="headline" component="h2" color="textSecondary">
+                                Log in
+                            </Typography>
                             <Grid item>
                                 <Button className={classes.button} id='student' onClick={this.loginOnClick}>Student Login</Button>
                             </Grid>
