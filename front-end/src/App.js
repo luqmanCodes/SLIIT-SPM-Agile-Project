@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import {Route} from 'react-router-dom';
-import './App.css';
-import FormI5 from './components/Form_I-5/FormI5';
-import Menu from './components/MainUI/Menu';
-import firebase from 'firebase';
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import Login from './components/Auth/LoginForm';
+import StudentDashboard from './containers/student-dashboard';
+import SupervisorLogin from './components/Auth/SupervisorLogin';
+import firebase from 'firebase/app';
 import {DB_CONFIG} from './config';
-class App extends Component {
+const fireApp = firebase.initializeApp(DB_CONFIG);
+export const app = fireApp; 
 
-  constructor(props) {
-    super(props);
-    this.app = firebase.initializeApp(DB_CONFIG);
-  } 
+class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Route exact path='/' component={Menu}/>
-          <Route exact path='/student' component={Menu}/>
-          <Route exact path='/supervisor' component={Menu}/>
-          <Route exact path='/formI5' component={FormI5}/>
-        </div>
+        <Switch>
+          <Route exact path='/' render={(props)=><Login {...props}  fireApp={fireApp}/>}/>
+          <Route exact path='/supervisor' render={(props)=><SupervisorLogin {...props} fireApp={fireApp}/>}/>
+          <Route path='/student/:email'  render={(props)=><StudentDashboard {...props} fireApp={fireApp}/>}/>
+        </Switch>
       </Router>
     );
   }

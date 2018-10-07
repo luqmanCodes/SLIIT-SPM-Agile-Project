@@ -21,7 +21,26 @@
 .App-intro {
   font-size: large;
 }
+side {
+  width: 310px;
+}
 
+name {
+  font-size: 50px;
+}
+
+.rowC{
+  display:flex; 
+  flex-direction:row;
+}
+
+.divRight{
+  width: 1000px;
+}
+img {
+  height:325px;
+  width:300px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
