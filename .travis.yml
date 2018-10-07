@@ -1,17 +1,18 @@
 language : node_js
+
+before_install:
+  cd front-end
 node_js :
   - "6.0"
 script :
-  - cd front-end
-  - npm install
   - npm test
   - npm run build
-  - cd ..
-  - cd functions
-  - npm install
 install:
   - npm install -g firebase-tools
+  - npm install
 after_success:
-  - firebase deploy --token $FIREBASE_TOKEN
-
+  - firebase deploy --token $FIREBASE_TOKEN --only hosting
+cache:
+  directories:
+  - node_modules
 
