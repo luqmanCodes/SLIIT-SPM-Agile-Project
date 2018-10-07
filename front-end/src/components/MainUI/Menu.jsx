@@ -48,7 +48,7 @@ render() {
             <Typography variant="headline" gutterBottom>
               SE3080 2018 Scrum - Group 19
             </Typography>
-            <Button variant="outlined" color="primary" className={classes.button} >
+            <Button variant="outlined" color="primary" className={classes.button} href='/student' >
               Student
             </Button>
             <Button variant="outlined" color="secondary" className={classes.button}>
