@@ -9,14 +9,14 @@ const fireApp = firebase.initializeApp(DB_CONFIG);
 export const app = fireApp; 
 
 class App extends Component {
+
   render() {
     return (
       <Router>
         <Switch>
-          <Route exact path='/' render={(props)=><Login {...props} fireApp={fireApp}/>}/>
+          <Route exact path='/' render={(props)=><Login {...props}  fireApp={fireApp}/>}/>
           <Route exact path='/supervisor' render={(props)=><SupervisorLogin {...props} fireApp={fireApp}/>}/>
-          <Route name="student" path='/student/:email'  render={(props)=><StudentDashboard {...props} fireApp={fireApp}/>}
-          />
+          <Route path='/student/:email'  render={(props)=><StudentDashboard {...props} fireApp={fireApp}/>}/>
         </Switch>
       </Router>
     );

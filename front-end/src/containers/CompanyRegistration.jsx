@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import { Button } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import swal from 'sweetalert2';
 
 const styles = theme => ({
     container: {
@@ -126,7 +127,9 @@ class CompanyRegistration extends Component {
               internDuration:this.state.internDuration,
          }},()=>{
              this.props.fireApp.database().ref(`/students/${this.state.studentNo}`).set(this.state.register).then(snap => {
-               console.log("okay")
+              swal('Good job','You registered with he system','success');
+               this.props.history.push("/student/student/"+this.state.studentNo+"/formI1");
+               
              }).catch(err => {
                console.log(err + "dsa");
              })

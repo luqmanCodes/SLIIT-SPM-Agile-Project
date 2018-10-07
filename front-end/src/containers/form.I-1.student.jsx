@@ -100,6 +100,7 @@ class FormI1Student extends Component {
             this.database.ref(`students/${this.state.data.stdId}`).set(this.state.data)
                 .then(snap => {
                     swal('Good job','You submitted Form I-1','success');
+                    this.history.push(`/student/student/${this.state.data.stdId}/waiting`)
                 });
         }
 
