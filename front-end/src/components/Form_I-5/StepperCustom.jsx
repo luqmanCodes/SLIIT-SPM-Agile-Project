@@ -11,7 +11,9 @@ import FormPart1 from './FormPart1';
 import PerformanceTable from './PerfomanceTable';
 import WorkHabitTable from './WorkHabitTable';
 import OtherDetails from './OtherDetails';
-import PerformanceOverall from './PerfomanceOverall';
+import PerformanceOverall from './PerformanceOverall';
+
+import store from '../../store';
 
 const styles = theme => ({
   root: {
@@ -167,6 +169,9 @@ class HorizontalLabelPositionBelowStepper extends React.Component {
   };
 
   handleReset = () => {
+
+    console.log(store.getState());
+
     this.setState({
       activeStep: 0,
     });

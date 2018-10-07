@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextAreaCustom from './TextAreaCustom';
 import Button from '@material-ui/core/Button';
 import { TextField } from '@material-ui/core';
 
 import { connect } from 'react-redux';
-import { fetchData, submitOtherDetails } from '../../actions/form5OtherDetails-actions';
+import { submitOtherDetails } from '../../actions/form5OtherDetails-actions';
 import { compose } from 'redux';
 
 const styles = theme => ({
@@ -32,41 +31,56 @@ class OtherDetails extends Component {
     super(props);
 
     this.state={
-      longinput1: null,
-      longinput2: null,
-      longinput3: null,
-      longinput4: null,
-      longinput5: null,
-      longinput6: null,
-      data: null,
+      longinput : [],
     }
 
     this.handleInput = this.handleInput.bind(this);
   }
 
   handleInput(e){
-    // // console.log(data);
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
-    console.log([e.target.id]+" "+e.target.value);
+    let status = false;
+    if(this.state.longinput.length === 0){
+      let obj = {
+        id : e.target.id,
+        data : e.target.value
+      }
+      this.state.longinput.push(obj);
+    } else {
+      this.state.longinput.map(x => {
+        if(x.id === e.target.id){
+          x.data = e.target.value
+          status = true
+        }
+        return x;
+      });
+      if(!status){
+        let obj = {
+          id : e.target.id,
+          data: e.target.value
+        }
+        this.state.longinput.push(obj);
+      }
+    }
+    e.preventDefault();
   }
 
   validateField() {
 
     let check = false;
-    // let data = this.
-    // this.state.forEach(x => {
-    //   if(x === null){
-    //     check = false;
-    //   } else {
-    //     check = true;
-    //   }
-    // });
+    this.state.longinput.forEach(x => {
+      if(x.data === null){
+        check = false;
+      } else {
+        check = true;
+      }
+    });
 
     console.log(this.state);
-    if(check) {
+    if(true) {
+      this.props.submitOtherDetails(this.state.longinput);
       this.props.clickNext();
+    } else {
+      alert("Fill out all fields");
     }
   }
   
