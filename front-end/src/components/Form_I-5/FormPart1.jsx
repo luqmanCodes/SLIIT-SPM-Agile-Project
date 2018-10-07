@@ -59,7 +59,9 @@ class FormPart1 extends React.Component {
       let values = {
         employeeName: this.state.employeeName,
         supervisorName: this.state.supervisorName,
-        formPart2val: this.state.formPart2val,
+        studentName: this.state.studentName,
+        studentId: this.state.studentId,
+        discribingDifferences: this.state.formPart2val,
       }
       this.props.submitPart1(values);
       this.props.clickNext();
