@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-
+import swal from 'sweetalert2';
 /*
     author : Luqman
 */
@@ -37,19 +37,21 @@ class FormI1Student extends Component {
 
     constructor(props) {
         super(props);
-        this.db = this.props.fireApp.database().ref().child('students');
+        this.database = this.props.fireApp.database();
+        this.db = this.props.fireApp.database().ref('students');
         this.state = {
 
             data: {
-                stdId: 'IT16154254',
-                name: 'A.H Luqman',
-                address: 'No 240/1, Dodangolla Akurana',
-                homePhone: '0812304613',
-                mobilePhone: '0768976540',
-                email: 'm.luqman077@gmail.com',
-                semester: '2',
-                year: '2',
-                cgpa: '2',
+                stdId: '',
+                name: '',
+                address: '',
+                homePhone: '',
+                mobilePhone: '',
+                email: '',
+                semester: '',
+                year: '',
+                cgpa: '',
+                status: 'FILLED_FORMI1'
             },
             error: {
                 homePhone: {
@@ -66,11 +68,14 @@ class FormI1Student extends Component {
         this.onSubmitHandler = this.onSubmitHandler.bind(this);
     }
     componentDidMount() {
-       this.db.once('value').then( snap => {
-            console.log(snap.val());
+        this.db.orderByKey().equalTo(localStorage.getItem("loginItNo")).limitToFirst(1).once("value").then(snap => {
+            let retObj = snap.val()[localStorage.getItem("loginItNo")];
+            console.log(retObj);
+            this.setState({data:{...retObj,homePhone:""}})
         }).catch(err => {
             console.log(err);
         })
+
     }
     //handler to attend all changes that happen to the form
     handleOnChange(e) {
@@ -84,15 +89,21 @@ class FormI1Student extends Component {
             data : prevData,
             error: prevError
         });
-        e.preventDefault();
+        e.preventDefault(); 
     }
     onSubmitHandler(e) {
         e.preventDefault();
-        console.log( this.validateMultipleEmails(this.state.data.email,'email'));
         if(this.validatePhoneNumber(this.state.data.homePhone,'homePhone') && this.validateMultipleEmails(this.state.data.email,'email')) {
-            console.log('Valid')
+            const prevData = this.state.data;
+            prevData["status"] = "FORMI1SUBMITTED";
+            this.setState({data:prevData});
+            this.database.ref(`students/${this.state.data.stdId}`).set(this.state.data)
+                .then(snap => {
+                    swal('Good job','You submitted Form I-1','success');
+                    this.history.push(`/student/student/${this.state.data.stdId}/waiting`)
+                });
         }
-       // this.db.push().set(this.state.data);
+
     }
     validatePhoneNumber(phoneNo,stateId) {
         const phoneNoRegEx = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
@@ -175,7 +186,7 @@ class FormI1Student extends Component {
                                     />
                                 </Grid>
                                 <Grid container item direction='row'spacing={8} md justify="center">
-                                    <Grid item md justify="center">
+                                    <Grid item md >
                                         <TextField className={classes.smallText} disabled value={this.state.data.semester} id='semester' onChange={this.handleOnChange} label='Semester' required />
                                     </Grid>
                                     <Grid item md>
