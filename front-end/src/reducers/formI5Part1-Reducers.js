@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
         case SUBMIT_PART1:
             return{
                 ...state,
-                detailsPart1: action.payload,
+                basicFormDetails: action.payload,
             }
         case SUCCESS_VALIDATION_PART1:
             return {

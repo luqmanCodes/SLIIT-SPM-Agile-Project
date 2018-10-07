@@ -5,6 +5,13 @@ import { green, red, lightBlue, lightGreen, blue } from '@material-ui/core/color
 import Radio from '@material-ui/core/Radio';
 import Button from '@material-ui/core/Button';
 
+import { connect } from 'react-redux';
+import { submitOverAll } from '../../actions/form5OverAll-actions';
+import { fetchData } from '../../actions/formI5Part1-actions';
+import { compose } from 'redux';
+import store from '../../store';
+import {app} from '../../App';
+
 const styles = {
   root_1: {
     '&$checked': {
@@ -41,19 +48,43 @@ const styles = {
   },
 };
 
-class RadioButtons extends React.Component {
+class PerformanceOverAll extends React.Component {
   state = {
-    selectedValue: '',
+    supervisor: null,
+    date : null,
   };
 
+  componentWillMount(){
+    this.setState({
+      date : new Date().toString,
+    });
+  }
+
   handleChange = event => {
+    event.preventDefault();
     this.setState({ selectedValue: event.target.value });
-    console.log(event.target.value);
+    
   };
 
   validateField() {
-    if(true) {
+
+    let check = false;
+    if(this.state.selectedValue === null) {
+      check = false;
+    } else {
+      check = true;
+    }
+    if(check) {
+      console.log(this.state);
+      this.props.submitOverAll(this.state);
       this.props.clickNext();
+      let prevStore = store.getState();
+      app.database().ref(`students/${prevStore.formPart1.studentId}`).once("value").then(snap => {
+          const prevFB = snap.val();
+          app.database().ref(`students/${prevStore.formPart1.studentId}`).set({...prevFB,...prevStore});
+      })
+    } else {
+      alert("Select overall performance");
     }
   }
   
@@ -72,9 +103,8 @@ class RadioButtons extends React.Component {
           <Radio
             checked={this.state.selectedValue === 'a'}
             onChange={this.handleChange}
-            value="a"
-            name="Outstanging"
-            aria-label="A"
+            value={"a"}
+            id={'A'}
             classes={{
               root: classes.root_1,
               checked: classes.checked,
@@ -86,9 +116,8 @@ class RadioButtons extends React.Component {
           <Radio
             checked={this.state.selectedValue === 'b'}
             onChange={this.handleChange}
-            value="b"
-            name="radio-button-demo"
-            aria-label="B"
+            value={"b"}
+            id={'B'}
             classes={{
               root: classes.root_2,
               checked: classes.checked,
@@ -100,9 +129,8 @@ class RadioButtons extends React.Component {
           <Radio
             checked={this.state.selectedValue === 'c'}
             onChange={this.handleChange}
-            value="c"
-            name="radio-button-demo"
-            aria-label="C"
+            value={"c"}
+            id={'C'}
             classes={{
               root: classes.root_3,
               checked: classes.checked,
@@ -114,9 +142,8 @@ class RadioButtons extends React.Component {
           <Radio
             checked={this.state.selectedValue === 'd'}
             onChange={this.handleChange}
-            value="d"
-            name="radio-button-demo"
-            aria-label="D"
+            value={"d"}
+            id={'D'}
             classes={{
               root: classes.root_4,
               checked: classes.checked,
@@ -128,9 +155,8 @@ class RadioButtons extends React.Component {
           <Radio
             checked={this.state.selectedValue === 'e'}
             onChange={this.handleChange}
-            value="e"
-            name="radio-button-demo"
-            aria-label="E"
+            value={"e"}
+            id={'E'}
             classes={{
               root: classes.root_5,
               checked: classes.checked,
@@ -151,7 +177,7 @@ class RadioButtons extends React.Component {
         </Button>
         <label></label>&nbsp;<label> </label>
         <Button variant="contained" color="primary" onClick={this.validateField.bind(this)}>
-                    Next
+                    Submit
         </Button>
         <br />
         <p> </p>
@@ -161,8 +187,16 @@ class RadioButtons extends React.Component {
   }
 }
 
-RadioButtons.propTypes = {
+PerformanceOverAll.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RadioButtons);
+const mapStateToProps = state => ({
+
+})
+
+// export default withStyles(styles)(PerformanceOverAll);
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, { submitOverAll, fetchData }),
+)(PerformanceOverAll);

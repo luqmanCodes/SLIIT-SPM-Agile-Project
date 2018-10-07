@@ -14,7 +14,7 @@ import RadioCustom from './RadioCustom';
 import { TextField } from '@material-ui/core';
 
 import { connect } from 'react-redux';
-import { fetchData, submitHabitData } from '../../actions/form5Habit-actions';
+import { submitHabitData } from '../../actions/form5Habit-actions';
 import { compose } from 'redux';
 
 const CustomTableCell = withStyles(theme => ({
@@ -117,7 +117,7 @@ class WorkHabitTabel extends React.Component{
       }
     });
 
-    if(true) {
+    if(check) {
       this.props.submitHabitData(this.state.habitTableData);
       this.props.clickNext();
     } else {

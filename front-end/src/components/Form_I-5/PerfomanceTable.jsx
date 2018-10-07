@@ -14,7 +14,7 @@ import RadioCustom from './RadioCustom';
 import { TextField } from '@material-ui/core';
 
 import { connect } from 'react-redux';
-import { fetchData, submitPerformanceLevel } from '../../actions/formI5Performance-actions';
+import { submitPerformanceLevel } from '../../actions/formI5Performance-actions';
 import { compose } from 'redux';
 
 const CustomTableCell = withStyles(theme => ({
@@ -123,7 +123,7 @@ class PerformanceTable extends React.Component{
       }
     });
 
-    if(true) {
+    if(check) {
       this.props.submitPerformanceLevel(this.state.performanceTableData);
       this.props.clickNext();
     } else {

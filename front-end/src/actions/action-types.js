@@ -1,5 +1,10 @@
 //Fetching data and getting data from each component
 export const FETCH_DATA = 'FETCH_DATA';
+export const FETCH_PERFORMANCE_DATA = 'FETCH_PERFORMANCE_DATA';
+export const FETCH_HABIT_DATA = 'FETCH_HABIT_DATA';
+export const FETCH_OTHER_DATA = 'FETCH_OTHER_DATA';
+export const FETCH_OVERALL_DATA = 'FETCH_OVERALL_DATA';
+
 export const SUBMIT_PART1 = 'SUBMIT_PART1';
 export const SUBMIT_PERFORMANCE_TABLE = 'SUBMIT_PERFORMANCE_TABLE';
 export const SUBMIT_HABIT_TABLE = 'SUBMIT_HABIT_TABLE';
