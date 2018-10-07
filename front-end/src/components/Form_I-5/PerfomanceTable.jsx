@@ -123,7 +123,7 @@ class PerformanceTable extends React.Component{
       }
     });
 
-    if(true) {
+    if(check) {
       this.props.submitPerformanceLevel(this.state.performanceTableData);
       this.props.clickNext();
     } else {
