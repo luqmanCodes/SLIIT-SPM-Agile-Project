@@ -76,7 +76,7 @@ class OtherDetails extends Component {
     });
 
     console.log(this.state);
-    if(true) {
+    if(check) {
       this.props.submitOtherDetails(this.state.longinput);
       this.props.clickNext();
     } else {

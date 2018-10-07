@@ -10,6 +10,7 @@ import { submitOverAll } from '../../actions/form5OverAll-actions';
 import { fetchData } from '../../actions/formI5Part1-actions';
 import { compose } from 'redux';
 import store from '../../store';
+import {app} from '../../App';
 
 const styles = {
   root_1: {
@@ -62,7 +63,7 @@ class PerformanceOverAll extends React.Component {
   handleChange = event => {
     event.preventDefault();
     this.setState({ selectedValue: event.target.value });
-    console.log(this.state);
+    
   };
 
   validateField() {
@@ -77,7 +78,11 @@ class PerformanceOverAll extends React.Component {
       console.log(this.state);
       this.props.submitOverAll(this.state);
       this.props.clickNext();
-      console.log(store.getState());
+      let prevStore = store.getState();
+      // app.database().ref(`students/${prevStore.formPart1.studentId}`).once("value").then(snap => {
+      //     const prevFB = snap.val();
+      //     app.database().ref(`students/${prevStore.formPart1.studentId}`).set({...prevFB,...prevStore});
+      // })
     } else {
       alert("Select overall performance");
     }

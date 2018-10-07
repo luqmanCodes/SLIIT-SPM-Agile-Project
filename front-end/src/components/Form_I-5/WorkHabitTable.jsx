@@ -117,7 +117,7 @@ class WorkHabitTabel extends React.Component{
       }
     });
 
-    if(true) {
+    if(check) {
       this.props.submitHabitData(this.state.habitTableData);
       this.props.clickNext();
     } else {
