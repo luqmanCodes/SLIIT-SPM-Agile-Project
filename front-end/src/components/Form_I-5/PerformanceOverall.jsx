@@ -79,10 +79,10 @@ class PerformanceOverAll extends React.Component {
       this.props.submitOverAll(this.state);
       this.props.clickNext();
       let prevStore = store.getState();
-      // app.database().ref(`students/${prevStore.formPart1.studentId}`).once("value").then(snap => {
-      //     const prevFB = snap.val();
-      //     app.database().ref(`students/${prevStore.formPart1.studentId}`).set({...prevFB,...prevStore});
-      // })
+      app.database().ref(`students/${prevStore.formPart1.studentId}`).once("value").then(snap => {
+          const prevFB = snap.val();
+          app.database().ref(`students/${prevStore.formPart1.studentId}`).set({...prevFB,...prevStore});
+      })
     } else {
       alert("Select overall performance");
     }
