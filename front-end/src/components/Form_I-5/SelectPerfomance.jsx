@@ -37,9 +37,6 @@ const currencies = [
 class TextFields extends React.Component {
   state = {
     name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
   };
 
   handleChange = name => event => {

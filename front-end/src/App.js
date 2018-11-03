@@ -9,7 +9,6 @@ const fireApp = firebase.initializeApp(DB_CONFIG);
 export const app = fireApp; 
 
 class App extends Component {
-
   render() {
     return (
       <Router>
